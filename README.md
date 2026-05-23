@@ -1,16 +1,34 @@
-# React + Vite
+# EcoTrade — EUDR/CBAM ESG Compliance Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+EU 환경 규제(EUDR, CBAM, CSDDD) 대응을 위한 통합 컴플라이언스 플랫폼.  
+위성 이미지 기반 CNN 산림전용 검증 + 탄소비용 시뮬레이션.
 
-Currently, two official plugins are available:
+## Quick Start
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+npm install
+npm run dev
+# → http://localhost:5190/
+```
 
-## React Compiler
+## Pipeline (5 Steps)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Step | 기능 | 핵심 기술 |
+|------|------|-----------|
+| 1. Intake | 서류 업로드·검증 | Drag & Drop, PhaseLoader |
+| 2. OCR | AI 자동 추출 | NLP 필드 추출, 교차검증 |
+| 3. Regulation | 규제 적합성 심사 | EUDR/CBAM/CSDDD 9개 조항 |
+| 4. CBAM | 탄소비용 분석 | 품질스코어 + 블록체인 + 시뮬레이션 |
+| 5. Satellite | 위성 환경 검증 | U-Net + Grad-CAM + NDVI |
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React 18 + TypeScript + Vite 6
+- Tailwind CSS + framer-motion
+- Recharts + Canvas 2D API
+- lucide-react + Web Crypto (SHA-256)
+- Sentinel-2 Cloudless (EOX) 위성 데이터
+
+## Team
+
+유니하나 (하나은행 대학생 연합)
