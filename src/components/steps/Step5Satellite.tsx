@@ -149,9 +149,12 @@ export default function Step5Satellite({ skipLoading = false }: { skipLoading?: 
               </div>
               <div className="grid grid-cols-6 gap-2 mb-5">
                 {YEARS.map(yr => (
-                  <div key={yr} className="aspect-square rounded-lg overflow-hidden border border-border bg-neutral-100 relative">
-                    <img src={`/satellite/orig_${yr}.png`} alt={`${yr}`} className="w-full h-full object-cover opacity-70" />
-                    <div className="absolute bottom-1 left-1/2 -translate-x-1/2">
+                  <div key={yr} className="aspect-square rounded-lg overflow-hidden border border-border bg-neutral-100 relative group/thumb hover:border-ink transition-colors">
+                    <img src={`/satellite/orig_${yr}.png`} alt={`${yr}`} className="w-full h-full object-cover opacity-60 group-hover/thumb:opacity-100 transition-opacity" />
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/thumb:opacity-100 transition-opacity">
+                      <span className="bg-black/70 text-white text-[13px] font-mono font-bold px-2.5 py-1 rounded-md">{yr}</span>
+                    </div>
+                    <div className="absolute bottom-1 left-1/2 -translate-x-1/2 group-hover/thumb:opacity-0 transition-opacity">
                       <span className="bg-black/60 text-white text-[9px] font-mono px-1.5 py-0.5 rounded">{yr}</span>
                     </div>
                   </div>

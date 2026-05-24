@@ -246,7 +246,7 @@ export default function App() {
           </div>
           <div className="h-[50px] flex items-center px-8 justify-between">
             <div className="flex items-center gap-1.5">
-              <span className="text-[12px] text-muted3">Pipeline</span>
+              <span onClick={() => navigateStep(1)} className="text-[12px] text-muted3 hover:text-ink cursor-pointer transition-colors">Pipeline</span>
               <ChevronRight size={10} className="text-muted3" />
               <span className="font-heading text-[15px] font-semibold text-ink tracking-tight">
                 {STEPS.find(s => s.id === step)?.label}
