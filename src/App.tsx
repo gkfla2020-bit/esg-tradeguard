@@ -271,7 +271,7 @@ export default function App() {
             >
               {step === 1 && <Step1Intake skipLoading={completedSteps.current.has(1)} />}
               {step === 2 && <Step2OCR skipLoading={completedSteps.current.has(2)} />}
-              {step === 3 && <Step3Regulation skipLoading={completedSteps.current.has(3)} />}
+              {step === 3 && <Step3Regulation skipLoading={completedSteps.current.has(3)} satelliteCompleted={completedSteps.current.has(5)} />}
               {step === 4 && <Step4CBAM skipLoading={completedSteps.current.has(4)} />}
               {step === 5 && <Step5Satellite skipLoading={completedSteps.current.has(5)} />}
             </motion.div>

@@ -36,12 +36,19 @@ const RULES: Rule[] = [
   { reg: 'CSDDD', article: 'Art. 8', desc: '부정적 영향 방지 조치', status: 'pass', detail: 'RSPO 소규모 농가 지원 프로그램 참여 확인. 환경 복원 계획 첨부.', evidence: 'DDS Report Annex D', penalty: '민사 책임 + 기업 공시' },
 ]
 
-export default function Step3Regulation({ skipLoading = false }: { skipLoading?: boolean }) {
+export default function Step3Regulation({ skipLoading = false, satelliteCompleted = false }: { skipLoading?: boolean; satelliteCompleted?: boolean }) {
   const [phase, setPhase] = useState<'idle' | 'loading' | 'revealing' | 'done'>(skipLoading ? 'done' : 'idle')
   const [visibleCount, setVisibleCount] = useState(skipLoading ? RULES.length : 0)
   const [expanded, setExpanded] = useState<number | null>(null)
   const [filter, setFilter] = useState<RuleStatus | 'all'>('all')
   const [elapsed, setElapsed] = useState(skipLoading ? 5.9 : 0)
+
+  // 위성 검증 완료 시 pending → warn 업데이트
+  const activeRules = RULES.map(r =>
+    r.status === 'pending' && satelliteCompleted
+      ? { ...r, status: 'warn' as RuleStatus, detail: 'CNN 분석 결과 2020 이후 산림 31%p 감소. EUDR cutoff date 이후 산림전용 의심.', evidence: 'Step 5 CNN + NDVI 시계열' }
+      : r
+  )
   const startTime = useRef(Date.now())
 
   // Live elapsed timer
@@ -66,9 +73,9 @@ export default function Step3Regulation({ skipLoading = false }: { skipLoading?:
   }, [phase, visibleCount])
 
   const counts = {
-    pass: RULES.filter(r => r.status === 'pass').length,
-    warn: RULES.filter(r => r.status === 'warn').length,
-    fail: RULES.filter(r => r.status === 'fail').length,
+    pass: activeRules.filter(r => r.status === 'pass').length,
+    warn: activeRules.filter(r => r.status === 'warn').length,
+    fail: activeRules.filter(r => r.status === 'fail').length,
   }
 
   const StatusIcon = ({ status }: { status: RuleStatus }) => {
@@ -173,7 +180,7 @@ export default function Step3Regulation({ skipLoading = false }: { skipLoading?:
                   </div>
                 </div>
                 <div className="divide-y divide-border">
-                  {RULES.slice(0, visibleCount).filter(r => filter === 'all' || r.status === filter).map((rule, i) => (
+                  {activeRules.slice(0, visibleCount).filter(r => filter === 'all' || r.status === filter).map((rule, i) => (
                     <motion.div
                       key={`${rule.reg}-${rule.article}`}
                       initial={{ opacity: 0, x: -8 }}
