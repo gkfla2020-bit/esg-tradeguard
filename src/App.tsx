@@ -17,12 +17,21 @@ const STEPS: { id: StepId; label: string; mono: string; icon: typeof Upload }[] 
   { id: 5, label: 'Satellite + CNN', mono: 'sat.verify', icon: Satellite },
 ]
 
+const CMD_ITEMS = [
+  { id: 1, label: 'Intake — 서류 접수', keywords: 'upload document 서류' },
+  { id: 2, label: 'OCR Parse — 자동 추출', keywords: 'ocr extract 추출' },
+  { id: 3, label: 'Regulation — 규제 심사', keywords: 'eudr cbam csddd 규제' },
+  { id: 4, label: 'CBAM — 비용 분석', keywords: 'carbon 탄소 비용 시뮬레이션' },
+  { id: 5, label: 'Satellite + CNN — 위성 검증', keywords: 'satellite 위성 ndvi 산림' },
+]
+
 export default function App() {
   const [step, setStep] = useState<StepId>(1)
-  // Track which steps have completed their loading — skip animation on revisit
   const completedSteps = useRef<Set<StepId>>(new Set())
   const [prevDirection, setPrevDirection] = useState<'forward' | 'back'>('forward')
   const [clock, setClock] = useState(new Date())
+  const [cmdOpen, setCmdOpen] = useState(false)
+  const [cmdQuery, setCmdQuery] = useState('')
 
   useEffect(() => {
     const t = setInterval(() => setClock(new Date()), 1000)
@@ -38,6 +47,8 @@ export default function App() {
   // Keyboard shortcuts
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
+      if (e.key === 'k' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); setCmdOpen(o => !o); setCmdQuery(''); return }
+      if (e.key === 'Escape') { setCmdOpen(false); return }
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return
       if (e.key === 'ArrowRight' && step < 5) navigateStep((step + 1) as StepId)
       if (e.key === 'ArrowLeft' && step > 1) navigateStep((step - 1) as StepId)
@@ -46,6 +57,10 @@ export default function App() {
     return () => window.removeEventListener('keydown', handler)
   }, [step])
 
+  const filteredCmdItems = CMD_ITEMS.filter(item =>
+    !cmdQuery || item.label.toLowerCase().includes(cmdQuery.toLowerCase()) || item.keywords.includes(cmdQuery.toLowerCase())
+  )
+
   // Document title reflects current step
   useEffect(() => {
     const label = STEPS.find(s => s.id === step)?.label
@@ -53,6 +68,59 @@ export default function App() {
   }, [step])
 
   return (
+    <>
+    {/* ⌘K Command Palette */}
+    <AnimatePresence>
+      {cmdOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.15 }}
+          className="fixed inset-0 z-50 flex items-start justify-center pt-[20vh]"
+          onClick={() => setCmdOpen(false)}
+        >
+          <div className="fixed inset-0 bg-black/40 backdrop-blur-sm" />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96, y: -8 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.96, y: -8 }}
+            transition={{ duration: 0.15 }}
+            onClick={e => e.stopPropagation()}
+            className="relative w-[480px] bg-white rounded-xl border border-border shadow-elevated overflow-hidden"
+          >
+            <div className="flex items-center gap-3 px-4 py-3 border-b border-border">
+              <Search size={16} className="text-muted3 shrink-0" />
+              <input
+                autoFocus
+                value={cmdQuery}
+                onChange={e => setCmdQuery(e.target.value)}
+                placeholder="이동할 단계 검색..."
+                className="flex-1 text-[14px] text-ink placeholder:text-muted3 outline-none bg-transparent"
+              />
+              <span className="px-1.5 py-0.5 bg-surface2 rounded text-[9px] font-mono text-muted3">ESC</span>
+            </div>
+            <div className="py-2 max-h-[240px] overflow-y-auto">
+              {filteredCmdItems.map(item => (
+                <button
+                  key={item.id}
+                  onClick={() => { navigateStep(item.id as StepId); setCmdOpen(false) }}
+                  className="w-full flex items-center gap-3 px-4 py-2.5 text-left hover:bg-surface transition-colors"
+                >
+                  <div className="w-6 h-6 rounded-md bg-surface2 flex items-center justify-center text-[10px] font-mono font-bold text-muted2">{item.id}</div>
+                  <span className="text-[13px] text-ink">{item.label}</span>
+                  {item.id === step && <span className="ml-auto text-[9px] font-mono text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded">current</span>}
+                </button>
+              ))}
+              {filteredCmdItems.length === 0 && (
+                <div className="px-4 py-6 text-center text-[12px] text-muted3">결과 없음</div>
+              )}
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+
     <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
       <aside className="w-[240px] border-r border-border bg-surface flex flex-col shrink-0">
@@ -71,7 +139,7 @@ export default function App() {
 
         {/* Search */}
         <div className="px-4 pb-3">
-          <div className="flex items-center gap-2 px-2.5 py-[7px] bg-white border border-border rounded-lg font-mono text-[11px] text-muted2 hover:border-border2 transition-colors cursor-pointer">
+          <div onClick={() => { setCmdOpen(true); setCmdQuery('') }} className="flex items-center gap-2 px-2.5 py-[7px] bg-white border border-border rounded-lg font-mono text-[11px] text-muted2 hover:border-border2 transition-colors cursor-pointer">
             <Search size={12} className="text-muted3" />
             Search...
             <span className="ml-auto px-1.5 py-0.5 bg-surface2 rounded text-[9px] text-muted3">⌘K</span>
@@ -194,5 +262,6 @@ export default function App() {
         </div>
       </main>
     </div>
+    </>
   )
 }
