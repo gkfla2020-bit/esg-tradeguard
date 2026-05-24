@@ -101,14 +101,14 @@ export default function App() {
               loading="eager"
               auto-rotate
               auto-rotate-delay="0"
-              rotation-per-second="8deg"
-              camera-orbit="45deg 60deg 20m"
-              camera-target="0m 0m 0m"
+              rotation-per-second="12deg"
+              camera-orbit="0deg 45deg auto"
               environment-image="neutral"
-              shadow-intensity="0.5"
-              exposure="0.8"
+              shadow-intensity="1"
+              exposure="1.5"
+              camera-controls
               poster="/satellite/forest_aerial.jpg"
-              style={{ width: '100%', height: '100%', background: '#0a0a0a' }}
+              style={{ width: '100%', height: '100%', background: '#0a0f0a' }}
             />
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,#0a0a0a_85%)] pointer-events-none" />
             <div className="absolute top-4 left-4 font-mono text-[9px] text-white/25 space-y-0.5 pointer-events-none">
