@@ -55,80 +55,70 @@ export default function App() {
   // ─── Landing Screen ───────────────────────────────────────────────
   if (!started) {
     return (
-      <div className="h-screen flex overflow-hidden">
-        {/* Left — text */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          className="w-[420px] shrink-0 flex flex-col justify-center px-12 bg-white"
-        >
-          <div className="flex items-center gap-3 mb-6">
-            <svg width={24} height={24} viewBox="0 0 20 20" fill="none">
+      <div className="h-screen bg-white flex flex-col">
+        {/* Top bar */}
+        <div className="h-12 border-b border-border flex items-center px-10 justify-between shrink-0">
+          <div className="flex items-center gap-2.5">
+            <svg width={20} height={20} viewBox="0 0 20 20" fill="none">
               <circle cx="10" cy="10" r="9" stroke="#0A0A0A" strokeWidth="1.5" />
               <path d="M10 1v18M1 10h18" stroke="#0A0A0A" strokeWidth="1.5" />
               <circle cx="14" cy="6" r="1.5" fill="#0A0A0A" />
             </svg>
-            <span className="font-heading font-semibold text-[16px] text-ink tracking-tight">EcoTrade</span>
+            <span className="font-heading font-semibold text-[14px] text-ink">EcoTrade</span>
           </div>
-          <h1 className="font-heading text-[28px] font-bold text-ink tracking-tight leading-[1.2] mb-3">
-            EU 환경 규제<br />통합 컴플라이언스
-          </h1>
-          <p className="text-[13px] text-muted2 leading-relaxed mb-5">
-            EUDR 산림전용 검증, CBAM 탄소비용 산정, CSDDD 공급망 실사를 하나의 파이프라인으로.
-          </p>
-          <button
-            onClick={() => setStarted(true)}
-            style={{ backgroundColor: '#0A0A0A', color: '#fff' }}
-            className="w-fit px-7 py-3 rounded-lg text-[14px] font-semibold transition-all active:scale-[0.98] hover:opacity-90"
-          >
-            새 케이스 시작
-          </button>
-          <div className="mt-8 font-mono text-[10px] text-muted3">EUDR · CBAM · CSDDD · Team 유니하나 · v2.0</div>
-        </motion.div>
+          <span className="font-mono text-[10px] text-muted3">v2.0 · Team 유니하나</span>
+        </div>
 
-        {/* Right — 3D terrain */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.2, delay: 0.3 }}
-          className="flex-1 relative"
-        >
-          <div className="w-full h-full bg-[#0a0a0a] overflow-hidden relative flex flex-col items-center justify-center">
-            {/* Pipeline visualization */}
-            <div className="relative w-[320px]">
-              {/* Steps flow */}
-              {[
-                { icon: '01', label: '서류 접수', sub: 'Document Intake' },
-                { icon: '02', label: 'OCR 추출', sub: 'AI Extraction' },
-                { icon: '03', label: '규제 심사', sub: 'Compliance Check' },
-                { icon: '04', label: 'CBAM 비용', sub: 'Carbon Cost' },
-                { icon: '05', label: '위성 검증', sub: 'Satellite CNN' },
-              ].map((s, i) => (
-                <div key={i} className="flex items-center gap-4 mb-1">
-                  <div className="w-9 h-9 rounded-lg border border-white/10 flex items-center justify-center font-mono text-[11px] text-white/50 shrink-0">
-                    {s.icon}
-                  </div>
-                  <div className="flex-1 border-b border-white/5 pb-3 pt-2">
-                    <div className="text-[13px] text-white/80 font-medium">{s.label}</div>
-                    <div className="text-[10px] text-white/30 font-mono">{s.sub}</div>
+        {/* Main content — PPT style */}
+        <div className="flex-1 flex flex-col items-center justify-center px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-[700px] w-full"
+          >
+            {/* Headline */}
+            <h1 className="font-heading text-[36px] font-bold text-ink tracking-tight leading-[1.15] mb-4">
+              EU 환경 규제 대응을 위한<br />통합 컴플라이언스 플랫폼
+            </h1>
+            <p className="text-[15px] text-muted2 leading-relaxed mb-8 max-w-[540px]">
+              수입 서류 제출부터 위성 기반 산림전용 검증까지, 5단계 자동화 파이프라인으로
+              EUDR·CBAM·CSDDD 규제를 한번에 대응합니다.
+            </p>
+
+            {/* Pipeline steps — horizontal */}
+            <div className="flex items-center gap-2 mb-10">
+              {['서류 접수', 'OCR 추출', '규제 심사', 'CBAM 산정', '위성 검증'].map((label, i) => (
+                <div key={i} className="flex items-center gap-2">
+                  {i > 0 && <div className="w-4 h-[1px] bg-border" />}
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 border border-border rounded-md">
+                    <span className="font-mono text-[10px] text-muted3">{i + 1}</span>
+                    <span className="text-[11px] text-ink font-medium">{label}</span>
                   </div>
                 </div>
               ))}
             </div>
-            {/* Decorative elements */}
-            <div className="absolute top-6 right-6 font-mono text-[9px] text-white/20 text-right space-y-1">
-              <div>EUDR 2023/1115</div>
-              <div>CBAM 2023/956</div>
-              <div>CSDDD 2024/1760</div>
-            </div>
-            <div className="absolute bottom-6 left-6 font-mono text-[9px] text-white/20">
-              Compliance Pipeline v2.0
-            </div>
-            {/* Subtle grid background */}
-            <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+
+            {/* CTA */}
+            <button
+              onClick={() => setStarted(true)}
+              style={{ backgroundColor: '#0A0A0A', color: '#fff' }}
+              className="px-8 py-3.5 rounded-lg text-[15px] font-semibold transition-all active:scale-[0.98] hover:opacity-90"
+            >
+              시작하기
+            </button>
+          </motion.div>
+        </div>
+
+        {/* Bottom bar */}
+        <div className="h-10 border-t border-border flex items-center px-10 justify-between shrink-0">
+          <div className="flex gap-4 font-mono text-[10px] text-muted3">
+            <span>EUDR 2023/1115</span>
+            <span>CBAM 2023/956</span>
+            <span>CSDDD 2024/1760</span>
           </div>
-        </motion.div>
+          <span className="font-mono text-[10px] text-muted3">{new Date().toISOString().slice(0, 10)}</span>
+        </div>
       </div>
     )
   }
