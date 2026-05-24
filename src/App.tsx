@@ -61,10 +61,10 @@ export default function App() {
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="flex-1 flex flex-col justify-start pt-[12vh] px-12 lg:px-16 max-w-[640px] overflow-y-auto"
+          className="flex-1 flex flex-col justify-center px-12 lg:px-16 max-w-[640px] min-h-0"
         >
           {/* Logo */}
-          <div className="flex items-center gap-3 mb-8">
+          <div className="flex items-center gap-3 mb-6">
             <svg width={24} height={24} viewBox="0 0 20 20" fill="none">
               <circle cx="10" cy="10" r="9" stroke="#0A0A0A" strokeWidth="1.5" />
               <path d="M10 1v18M1 10h18" stroke="#0A0A0A" strokeWidth="1.5" />
@@ -89,21 +89,13 @@ export default function App() {
             새 케이스 시작
           </button>
 
-          {/* Supported regulations */}
-          <div className="mt-12 pt-6 border-t border-border">
-            <div className="font-mono text-[9px] text-muted3 uppercase tracking-wide mb-3">Supported Regulations</div>
-            <div className="flex gap-6 text-[12px] text-muted2">
-              <div><span className="font-semibold text-ink">EUDR</span> <span className="text-muted3">· 산림전용</span></div>
-              <div><span className="font-semibold text-ink">CBAM</span> <span className="text-muted3">· 탄소비용</span></div>
-              <div><span className="font-semibold text-ink">CSDDD</span> <span className="text-muted3">· 공급망</span></div>
-            </div>
-          </div>
-
-          {/* Footer */}
-          <div className="mt-auto pt-6 font-mono text-[10px] text-muted3 flex items-center gap-4">
+          {/* Meta */}
+          <div className="mt-8 font-mono text-[10px] text-muted3 flex items-center gap-3">
+            <span>EUDR · CBAM · CSDDD</span>
+            <span>·</span>
             <span>Team 유니하나</span>
+            <span>·</span>
             <span>v2.0</span>
-            <span>{new Date().toISOString().slice(0, 10)}</span>
           </div>
         </motion.div>
 
