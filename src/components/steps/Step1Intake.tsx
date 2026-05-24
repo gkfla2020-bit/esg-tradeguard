@@ -218,7 +218,7 @@ export default function Step1Intake({ skipLoading = false }: { skipLoading?: boo
                   </div>
                   {uploadedCount === 0 && (
                     <button onClick={loadDemoFiles} className="px-3 py-1.5 rounded-md border border-border text-[11px] font-medium text-muted2 hover:bg-surface2 transition-colors active:scale-[0.97]">
-                      데모 파일 로드
+                      샘플 케이스 불러오기
                     </button>
                   )}
                 </div>

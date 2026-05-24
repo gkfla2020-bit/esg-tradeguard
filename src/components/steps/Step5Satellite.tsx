@@ -43,6 +43,16 @@ export default function Step5Satellite({ skipLoading = false }: { skipLoading?: 
   const [visibleBars, setVisibleBars] = useState(skipLoading ? NDVI_DATA.length : 0)
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
+  // Preload all satellite images
+  useEffect(() => {
+    YEARS.forEach(yr => {
+      ['orig', 'seg', 'overlay'].forEach(prefix => {
+        const img = new Image()
+        img.src = `/satellite/${prefix}_${yr}.png`
+      })
+    })
+  }, [])
+
   // Timeline auto-play
   useEffect(() => {
     if (playing) {

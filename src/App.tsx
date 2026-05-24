@@ -150,8 +150,8 @@ export default function App() {
         </header>
 
         {/* Content with AnimatePresence */}
-        <div className="flex-1 overflow-y-auto p-8">
-          <AnimatePresence mode="wait">
+        <div id="main-scroll" className="flex-1 overflow-y-auto p-8">
+          <AnimatePresence mode="wait" onExitComplete={() => { document.getElementById('main-scroll')?.scrollTo({ top: 0 }) }}>
             <motion.div
               key={step}
               initial={{ opacity: 0, y: prevDirection === 'forward' ? 20 : -20 }}
