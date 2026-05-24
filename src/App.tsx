@@ -86,15 +86,15 @@ export default function App() {
               EUDR·CBAM·CSDDD 규제를 한번에 대응합니다.
             </p>
 
-            {/* Pipeline steps — horizontal */}
-            <div className="flex items-center gap-2 mb-10">
+            {/* Pipeline steps */}
+            <div className="flex items-center mb-10">
               {['서류 접수', 'OCR 추출', '규제 심사', 'CBAM 산정', '위성 검증'].map((label, i) => (
-                <div key={i} className="flex items-center gap-2">
-                  {i > 0 && <div className="w-4 h-[1px] bg-border" />}
-                  <div className="flex items-center gap-1.5 px-3 py-1.5 border border-border rounded-md">
-                    <span className="font-mono text-[10px] text-muted3">{i + 1}</span>
-                    <span className="text-[11px] text-ink font-medium">{label}</span>
+                <div key={i} className="flex items-center">
+                  <div className="flex flex-col items-center">
+                    <div className="w-7 h-7 rounded-full border-2 border-ink flex items-center justify-center font-mono text-[10px] font-bold text-ink">{i + 1}</div>
+                    <span className="text-[10px] text-muted2 mt-1.5 whitespace-nowrap">{label}</span>
                   </div>
+                  {i < 4 && <div className="w-8 h-[2px] bg-border mx-1 -mt-4" />}
                 </div>
               ))}
             </div>
