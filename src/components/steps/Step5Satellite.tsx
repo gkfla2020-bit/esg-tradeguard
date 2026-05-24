@@ -189,6 +189,7 @@ export default function Step5Satellite({ skipLoading = false }: { skipLoading?: 
                     const yrRisk = STATS[yr].forest < 50 ? 'high' : STATS[yr].forest < 65 ? 'mid' : 'low'
                     return (
                       <button key={yr} onClick={() => { setYear(yr); setPlaying(false) }}
+                        title={`${yr}년 위성 데이터 · 산림 ${STATS[yr].forest}%`}
                         className={`relative px-3.5 py-2 rounded-lg font-mono text-[12px] font-semibold transition-all active:scale-[0.96] ${
                           active ? 'bg-ink text-white shadow-sm' : 'bg-white border border-border text-muted2 hover:border-border2 hover:text-ink'
                         }`}>
