@@ -9,12 +9,12 @@ import Step5Satellite from './components/steps/Step5Satellite'
 
 type StepId = 1 | 2 | 3 | 4 | 5
 
-const STEPS: { id: StepId; label: string; mono: string; icon: typeof Upload }[] = [
-  { id: 1, label: 'Intake', mono: 'doc.upload', icon: Upload },
-  { id: 2, label: 'OCR Parse', mono: 'ocr.extract', icon: ScanText },
-  { id: 3, label: 'Regulation', mono: 'reg.triage', icon: Scale },
-  { id: 4, label: 'CBAM', mono: 'cbam.calc', icon: Calculator },
-  { id: 5, label: 'Satellite + CNN', mono: 'sat.verify', icon: Satellite },
+const STEPS: { id: StepId; label: string; mono: string; icon: typeof Upload; desc: string }[] = [
+  { id: 1, label: 'Intake', mono: 'doc.upload', icon: Upload, desc: '서류 업로드' },
+  { id: 2, label: 'OCR Parse', mono: 'ocr.extract', icon: ScanText, desc: '자동 추출' },
+  { id: 3, label: 'Regulation', mono: 'reg.triage', icon: Scale, desc: '규제 심사' },
+  { id: 4, label: 'CBAM', mono: 'cbam.calc', icon: Calculator, desc: '탄소 비용' },
+  { id: 5, label: 'Satellite + CNN', mono: 'sat.verify', icon: Satellite, desc: '위성 검증' },
 ]
 
 export default function App() {
@@ -180,7 +180,7 @@ export default function App() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <span className="block truncate">{s.label}</span>
-                  {active && <span className="font-mono text-[9px] text-muted3">{s.mono}</span>}
+                  {active && <span className="text-[9px] text-muted3">{s.desc}</span>}
                   {done && <span className="font-mono text-[9px] text-emerald-600">done</span>}
                 </div>
                 {active && <ChevronRight size={12} className="text-muted3" />}
@@ -210,7 +210,7 @@ export default function App() {
               style={{ backgroundColor: '#0A0A0A', color: '#fff' }}
               className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-[12px] font-semibold hover:opacity-90 transition-all active:scale-[0.98]"
             >
-              {STEPS.find(s => s.id === step + 1)?.label}
+              {STEPS.find(s => s.id === step + 1)?.desc}
               <ArrowRight size={13} />
             </button>
           </div>
