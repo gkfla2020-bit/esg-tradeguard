@@ -90,7 +90,7 @@ export default function Step3Regulation({ skipLoading = false }: { skipLoading?:
 
         <AnimatePresence mode="wait">
           {phase === 'idle' && (
-            <motion.div key="idle" exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.2 }} className="border border-border rounded-card p-6 bg-white">
+            <motion.div key="idle" exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.2 }} className="border border-border rounded-card p-4 bg-white">
               <div className="text-[13px] font-semibold text-ink mb-2">규제 데이터 준비됨</div>
               <div className="text-[11px] text-muted2 mb-3">EUDR 2023/1115 · CBAM 2023/956 · CSDDD 2024/1760 — {RULES.length}개 조항 대조 예정</div>
               <div className="flex gap-2">
