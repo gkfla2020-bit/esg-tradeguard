@@ -39,6 +39,7 @@ export default function Step3Regulation({ skipLoading = false }: { skipLoading?:
   const [phase, setPhase] = useState<'loading' | 'revealing' | 'done'>(skipLoading ? 'done' : 'loading')
   const [visibleCount, setVisibleCount] = useState(skipLoading ? RULES.length : 0)
   const [expanded, setExpanded] = useState<number | null>(null)
+  const [filter, setFilter] = useState<RuleStatus | 'all'>('all')
   const [elapsed, setElapsed] = useState(skipLoading ? 5.9 : 0)
   const startTime = useRef(Date.now())
 
@@ -115,13 +116,17 @@ export default function Step3Regulation({ skipLoading = false }: { skipLoading?:
                   { label: 'PASS', count: counts.pass, icon: ShieldCheck, border: 'border-emerald-300', bg: 'bg-emerald-50', text: 'text-emerald-700' },
                   { label: 'WARNING', count: counts.warn, icon: ShieldAlert, border: 'border-amber-300', bg: 'bg-amber-50', text: 'text-amber-700' },
                   { label: 'FAIL', count: counts.fail, icon: ShieldX, border: 'border-red-300', bg: 'bg-red-50', text: 'text-red-700' },
-                ].map(s => (
+                ].map(s => {
+                  const statusKey = (s.label === 'WARNING' ? 'warn' : s.label.toLowerCase()) as RuleStatus
+                  const isActive = filter === statusKey
+                  return (
                   <motion.div
                     key={s.label}
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.3 }}
-                    className={`border-2 ${s.border} ${s.bg} rounded-card px-4 py-3`}
+                    onClick={() => setFilter(isActive ? 'all' : statusKey)}
+                    className={`border-2 ${s.border} ${s.bg} rounded-card px-4 py-3 cursor-pointer transition-all active:scale-[0.97] ${isActive ? 'ring-2 ring-offset-1 ring-ink/20' : 'hover:shadow-sm'}`}
                   >
                     <div className="flex items-center gap-2 mb-1">
                       <s.icon size={14} className={s.text} />
@@ -130,7 +135,8 @@ export default function Step3Regulation({ skipLoading = false }: { skipLoading?:
                     <div className={`font-heading text-[28px] font-bold ${s.text}`}>{s.count}</div>
                     <div className="text-[10px] text-muted3">/ {RULES.length} articles</div>
                   </motion.div>
-                ))}
+                  )
+                })}
               </div>
 
               {/* Rules list */}
@@ -144,7 +150,7 @@ export default function Step3Regulation({ skipLoading = false }: { skipLoading?:
                   </div>
                 </div>
                 <div className="divide-y divide-border">
-                  {RULES.slice(0, visibleCount).map((rule, i) => (
+                  {RULES.slice(0, visibleCount).filter(r => filter === 'all' || r.status === filter).map((rule, i) => (
                     <motion.div
                       key={`${rule.reg}-${rule.article}`}
                       initial={{ opacity: 0, x: -8 }}
