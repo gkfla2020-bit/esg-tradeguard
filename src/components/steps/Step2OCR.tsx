@@ -215,15 +215,31 @@ export default function Step2OCR({ skipLoading = false }: { skipLoading?: boolea
                 </motion.div>
               )}
 
-              {/* 다음 단계 안내 */}
+              {/* 정보 확인 + 규제 매핑 */}
               {phase === 'done' && (
-                <div className="mt-4 bg-surface rounded-card border border-border p-4 flex items-center justify-between">
-                  <div>
-                    <div className="text-[12px] font-semibold text-ink">추출 완료</div>
-                    <div className="text-[11px] text-muted2 mt-0.5">다음 단계에서 이 데이터가 EU 규제를 충족하는지 자동 판정합니다.</div>
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="mt-4 border border-border rounded-card bg-white p-5"
+                >
+                  <div className="text-[13px] font-semibold text-ink mb-3">추출 정보 확인</div>
+                  <div className="grid grid-cols-2 gap-x-8 gap-y-2 mb-4">
+                    <div className="flex gap-2 text-[12px]"><span className="text-muted3 w-[60px] shrink-0">품목</span><span className="text-ink font-medium">Crude Palm Oil (CPO)</span></div>
+                    <div className="flex gap-2 text-[12px]"><span className="text-muted3 w-[60px] shrink-0">HS코드</span><span className="text-ink font-mono">1511.10.00</span></div>
+                    <div className="flex gap-2 text-[12px]"><span className="text-muted3 w-[60px] shrink-0">수출기업</span><span className="text-ink">PT. Sawit Kalimantan Utama</span></div>
+                    <div className="flex gap-2 text-[12px]"><span className="text-muted3 w-[60px] shrink-0">원산지</span><span className="text-ink">Indonesia (Central Kalimantan)</span></div>
                   </div>
-                  <div className="text-[10px] text-muted3 font-mono">→ Regulation</div>
-                </div>
+                  <div className="border-t border-border pt-3 mb-3">
+                    <div className="text-[11px] text-muted2 mb-2">HS 1511 기준 적용 규제:</div>
+                    <div className="flex gap-2">
+                      <span className="px-2.5 py-1 rounded-md text-[11px] font-semibold border border-amber-300 bg-amber-50 text-amber-700">EUDR — 산림전용 검증 필요</span>
+                      <span className="px-2.5 py-1 rounded-md text-[11px] font-semibold border border-blue-300 bg-blue-50 text-blue-700">CBAM — 탄소비용 산정 필요</span>
+                      <span className="px-2.5 py-1 rounded-md text-[11px] font-semibold border border-purple-300 bg-purple-50 text-purple-700">CSDDD — 공급망 실사</span>
+                    </div>
+                  </div>
+                  <div className="text-[11px] text-muted2">위 정보가 맞으면 다음 단계로 진행하세요. 수정이 필요하면 해당 필드를 클릭하세요.</div>
+                </motion.div>
               )}
             </motion.div>
           )}
