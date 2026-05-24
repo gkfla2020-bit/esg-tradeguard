@@ -147,13 +147,13 @@ export default function App() {
       <main className="flex-1 flex flex-col overflow-hidden">
         {/* Top header */}
         <header className="h-[52px] border-b border-border bg-white flex items-center px-8 justify-between shrink-0">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
             <span className="text-[12px] text-muted3">Pipeline</span>
-            <span className="text-muted3 text-[10px]">/</span>
+            <ChevronRight size={10} className="text-muted3" />
             <span className="font-heading text-[15px] font-semibold text-ink tracking-tight">
               {STEPS.find(s => s.id === step)?.label}
             </span>
-            <span className="font-mono text-[9px] text-muted3 bg-surface2 px-1.5 py-0.5 rounded ml-1">
+            <span className="font-mono text-[9px] text-muted3 bg-surface2 px-1.5 py-0.5 rounded ml-1.5">
               {step}/{STEPS.length}
             </span>
           </div>

@@ -379,11 +379,11 @@ export default function Step4CBAM({ skipLoading = false }: { skipLoading?: boole
                     <div className="text-[13px] font-bold text-ink mb-4">2034년 기준 — 기본값 vs 실측 비용 비교</div>
                     <div className="grid grid-cols-3 text-center gap-4">
                       <div>
-                        <div className="font-mono text-[28px] font-black text-red-600">{costData[costData.length - 1]['EU 기본값'].toFixed(1)}억</div>
+                        <div className="font-mono text-[28px] font-black text-red-600"><span className="text-[16px] align-top">↑</span>{costData[costData.length - 1]['EU 기본값'].toFixed(1)}억</div>
                         <div className="text-[11px] text-muted2 mt-1">기본값 적용 시</div>
                       </div>
                       <div>
-                        <div className="font-mono text-[28px] font-black text-emerald-600">{costData[costData.length - 1]['실측 제출'].toFixed(1)}억</div>
+                        <div className="font-mono text-[28px] font-black text-emerald-600"><span className="text-[16px] align-top">↓</span>{costData[costData.length - 1]['실측 제출'].toFixed(1)}억</div>
                         <div className="text-[11px] text-muted2 mt-1">실측 제출 시</div>
                       </div>
                       <div>

@@ -129,11 +129,12 @@ export default function Step2OCR({ skipLoading = false }: { skipLoading?: boolea
 
               {/* Results table */}
               <div className="border border-border rounded-card overflow-hidden bg-white">
-                <div className="grid grid-cols-[140px_1fr_100px_120px] gap-0 px-5 py-2.5 border-b border-border bg-surface text-[10px] font-mono text-muted3 uppercase tracking-wide">
+                <div className="grid grid-cols-[140px_1fr_100px_120px_60px] gap-0 px-5 py-2.5 border-b border-border bg-surface text-[10px] font-mono text-muted3 uppercase tracking-wide">
                   <span>Field</span>
                   <span>Extracted Value</span>
                   <span>Confidence</span>
                   <span>Source</span>
+                  <span>Status</span>
                 </div>
                 <div className="divide-y divide-border">
                   {RESULTS.slice(0, visibleCount).map((item, i) => (
@@ -142,12 +143,19 @@ export default function Step2OCR({ skipLoading = false }: { skipLoading?: boolea
                       initial={{ opacity: 0, x: -8 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.25 }}
-                      className="grid grid-cols-[140px_1fr_100px_120px] gap-0 px-5 py-3 items-center hover:bg-surface/50 transition-colors"
+                      className={`grid grid-cols-[140px_1fr_100px_120px_60px] gap-0 px-5 py-3 items-center transition-colors ${
+                        item.confidence < 93 ? 'bg-amber-50/40' : 'hover:bg-surface/50'
+                      }`}
                     >
                       <span className="font-mono text-[11px] text-muted2">{item.field}</span>
-                      <span className="text-[13px] font-medium text-ink">{item.value}</span>
+                      <span className={`text-[13px] font-medium ${item.confidence < 93 ? 'text-ink underline decoration-amber-300 decoration-2 underline-offset-2' : 'text-ink'}`}>{item.value}</span>
                       <ConfidenceBar value={item.confidence} />
                       <span className="font-mono text-[10px] text-muted3">{item.source}</span>
+                      {item.confidence < 93 ? (
+                        <button className="px-2 py-0.5 rounded text-[9px] font-semibold bg-amber-100 text-amber-700 hover:bg-amber-200 transition-colors">Review</button>
+                      ) : (
+                        <span className="text-[9px] text-emerald-600 font-mono">auto</span>
+                      )}
                     </motion.div>
                   ))}
                 </div>
