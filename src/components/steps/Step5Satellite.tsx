@@ -26,7 +26,7 @@ const NDVI_DATA = [
 
 
 export default function Step5Satellite({ skipLoading = false }: { skipLoading?: boolean }) {
-  const [appPhase, setAppPhase] = useState<'idle' | 'analyzing' | 'done'>(skipLoading ? 'done' : 'idle')
+  const [appPhase, setAppPhase] = useState<'idle' | 'analyzing' | 'done'>('idle')
   const [analysisProgress, setAnalysisProgress] = useState(0)
   const [year, setYear] = useState<number>(2020)
   const [view, setView] = useState<View>('seg')
