@@ -46,6 +46,12 @@ export default function App() {
     return () => window.removeEventListener('keydown', handler)
   }, [step])
 
+  // Document title reflects current step
+  useEffect(() => {
+    const label = STEPS.find(s => s.id === step)?.label
+    document.title = `${label} — EcoTrade`
+  }, [step])
+
   return (
     <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
@@ -136,7 +142,7 @@ export default function App() {
             <div className="w-7 h-7 rounded-full bg-ink text-white flex items-center justify-center text-[10px] font-semibold">UH</div>
             <div className="flex-1 min-w-0">
               <div className="text-[12px] text-ink font-medium truncate">Team 유니하나</div>
-              <div className="font-mono text-[9px] text-muted3">ECO-2026-0523</div>
+              <div className="font-mono text-[9px] text-muted3">ECO-{new Date().toISOString().slice(2,10).replace(/-/g,'')}</div>
             </div>
           </div>
           <div className="flex items-center gap-1.5 text-[9px] text-muted3 font-mono">
@@ -161,7 +167,7 @@ export default function App() {
             </span>
           </div>
           <div className="flex items-center gap-5 font-mono text-[11px] text-muted2">
-            <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />ECO-2026-0523-001</span>
+            <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />ECO-{new Date().toISOString().slice(2,10).replace(/-/g,'')}-001</span>
             <span>Palm Oil · Central Kalimantan → EU</span>
             <span className="px-2 py-0.5 bg-surface2 rounded text-muted3">EUDR 2023/1115</span>
             <span className="text-muted3">{clock.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}</span>

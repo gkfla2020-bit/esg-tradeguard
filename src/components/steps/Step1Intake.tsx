@@ -353,8 +353,8 @@ export default function Step1Intake({ skipLoading = false }: { skipLoading?: boo
 
         {/* Footer meta */}
         <div className="mt-4 font-mono text-[10px] text-muted3 flex gap-3">
-          <span>접수번호: ECO-2026-0523-001</span><span>·</span>
-          <span>접수일: 2026-05-23</span><span>·</span>
+          <span>접수번호: ECO-{new Date().toISOString().slice(0,10).replace(/-/g,'')}-001</span><span>·</span>
+          <span>접수일: {new Date().toISOString().slice(0,10)}</span><span>·</span>
           <span>EUDR Reg. 2023/1115 Art.4</span>
         </div>
       </motion.div>
