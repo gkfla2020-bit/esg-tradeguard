@@ -81,7 +81,8 @@ export default function App() {
 
           <button
             onClick={() => setStarted(true)}
-            className="w-fit px-7 py-3 bg-ink text-white rounded-lg text-[14px] font-semibold hover:bg-ink2 transition-all active:scale-[0.98]"
+            style={{ backgroundColor: '#0A0A0A', color: '#fff' }}
+            className="w-fit px-7 py-3 rounded-lg text-[14px] font-semibold transition-all active:scale-[0.98] hover:opacity-90"
           >
             새 케이스 시작
           </button>
