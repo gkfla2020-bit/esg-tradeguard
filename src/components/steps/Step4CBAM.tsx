@@ -205,6 +205,7 @@ export default function Step4CBAM({ skipLoading = false }: { skipLoading?: boole
                           contentStyle={{ fontSize: 11, fontFamily: 'JetBrains Mono', borderRadius: 8, border: '1px solid #e5e7eb' }}
                           formatter={(v: any) => [`${Number(v).toFixed(3)}`, '확률밀도']}
                           labelFormatter={(l) => `${l} tCO₂/t`}
+                          cursor={{ stroke: '#a1a1aa', strokeWidth: 1 }}
                         />
                         <Area type="monotone" dataKey="density" stroke="#3f3f46" strokeWidth={2.5} fill="url(#gaussGrad)" dot={false} animationDuration={1200} />
                         <ReferenceLine x={SECTOR.euDefault} stroke="#dc2626" strokeDasharray="6 4" strokeWidth={2} label={{ value: `EU 기본값 (${SECTOR.euDefault})`, position: 'top', fontSize: 11, fill: '#dc2626', fontWeight: 600 }} />
@@ -337,8 +338,11 @@ export default function Step4CBAM({ skipLoading = false }: { skipLoading?: boole
                         <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" vertical={false} />
                         <XAxis dataKey="year" tick={{ fontSize: 11, fontFamily: 'JetBrains Mono', fill: '#71717A' }} axisLine={{ stroke: '#e5e7eb' }} tickLine={false} />
                         <YAxis tick={{ fontSize: 11, fontFamily: 'JetBrains Mono', fill: '#a1a1aa' }} axisLine={false} tickLine={false} unit="억" />
-                        <Tooltip contentStyle={{ fontSize: 12, fontFamily: 'JetBrains Mono', borderRadius: 8, border: '1px solid #e5e7eb', boxShadow: '0 4px 12px rgba(0,0,0,0.08)' }}
-                          formatter={(v: any) => [`${Number(v).toFixed(1)}억 원`]} />
+                        <Tooltip
+                          contentStyle={{ fontSize: 12, fontFamily: 'JetBrains Mono', borderRadius: 8, border: '1px solid #e5e7eb', boxShadow: '0 4px 12px rgba(0,0,0,0.08)' }}
+                          formatter={(v: any) => [`${Number(v).toFixed(1)}억 원`]}
+                          cursor={{ stroke: '#d4d4d8', strokeWidth: 1, strokeDasharray: '4 4' }}
+                        />
                         <Legend wrapperStyle={{ fontSize: 11 }} iconType="circle" iconSize={8} />
                         <Area type="monotone" dataKey="실측 제출" stroke="#10b981" strokeWidth={2.5} fill="url(#gradActual)" dot={{ r: 4, fill: '#10b981', strokeWidth: 2, stroke: '#fff' }} />
                         <Line type="monotone" dataKey="EU 기본값" stroke="#ef4444" strokeWidth={2} strokeDasharray="6 3" dot={{ r: 3, fill: '#ef4444' }} />

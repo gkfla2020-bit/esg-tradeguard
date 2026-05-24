@@ -387,7 +387,7 @@ export default function Step5Satellite({ skipLoading = false }: { skipLoading?: 
                       <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" vertical={false} />
                       <XAxis dataKey="year" tick={{ fontSize: 11, fontFamily: 'JetBrains Mono', fill: '#71717A' }} axisLine={{ stroke: '#e5e7eb' }} tickLine={false} />
                       <YAxis domain={[0.35, 0.85]} tick={{ fontSize: 10, fontFamily: 'JetBrains Mono', fill: '#a1a1aa' }} axisLine={false} tickLine={false} tickCount={6} />
-                      <Tooltip contentStyle={{ fontSize: 12, fontFamily: 'JetBrains Mono', borderRadius: 8, border: '1px solid #e5e7eb' }} formatter={(value) => [Number(value).toFixed(3), 'NDVI']} />
+                      <Tooltip contentStyle={{ fontSize: 12, fontFamily: 'JetBrains Mono', borderRadius: 8, border: '1px solid #e5e7eb' }} formatter={(value) => [Number(value).toFixed(3), 'NDVI']} cursor={{ stroke: '#d4d4d8', strokeWidth: 1, strokeDasharray: '4 4' }} />
                       <ReferenceLine y={0.6} stroke="#ef4444" strokeDasharray="6 4" strokeWidth={1.5} />
                       <ReferenceLine x="2020" stroke="#d97706" strokeDasharray="4 4" strokeWidth={1.5} />
                       <Area type="monotone" dataKey="ndvi" stroke="#10b981" strokeWidth={2.5} fill="url(#ndviGrad)" dot={{ r: 5, fill: '#10b981', strokeWidth: 2, stroke: '#fff' }} activeDot={{ r: 7, fill: '#059669' }} />
