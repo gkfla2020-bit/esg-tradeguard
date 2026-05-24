@@ -16,8 +16,9 @@
     letter-spacing: -0.01em;
   }
   ::selection { background-color: #E4E4E7; color: #0A0A0A; }
-  table { font-variant-numeric: tabular-nums; }
+  table, .font-mono { font-variant-numeric: tabular-nums; }
   button, [role="button"] { cursor: pointer; }
+  aside, nav, header { user-select: none; -webkit-user-select: none; }
   button:focus-visible, input:focus-visible, select:focus-visible {
     outline: 2px solid #0A0A0A;
     outline-offset: 2px;
