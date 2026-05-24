@@ -55,12 +55,11 @@ export default function App() {
   // ─── Landing Screen ───────────────────────────────────────────────
   if (!started) {
     return (
-      <div className="h-screen bg-white flex items-center justify-center">
+      <div className="h-screen bg-white overflow-y-auto flex items-center justify-center p-8">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="px-8"
         >
           {/* Logo */}
           <div className="flex items-center gap-3 mb-6">
@@ -76,11 +75,10 @@ export default function App() {
           <h1 className="font-heading text-[32px] font-bold text-ink tracking-tight leading-[1.15] mb-3">
             EU 환경 규제<br />통합 컴플라이언스
           </h1>
-          <p className="text-[14px] text-muted2 leading-relaxed mb-6 max-w-[380px]">
+          <p className="text-[14px] text-muted2 leading-relaxed mb-5 max-w-[380px]">
             EUDR 산림전용 검증, CBAM 탄소비용 산정, CSDDD 공급망 실사를 하나의 파이프라인으로.
           </p>
 
-          {/* CTA */}
           <button
             onClick={() => setStarted(true)}
             className="w-fit px-7 py-3 bg-ink text-white rounded-lg text-[14px] font-semibold hover:bg-ink2 transition-all active:scale-[0.98]"
@@ -88,14 +86,7 @@ export default function App() {
             새 케이스 시작
           </button>
 
-          {/* Meta */}
-          <div className="mt-8 font-mono text-[10px] text-muted3 flex items-center gap-3">
-            <span>EUDR · CBAM · CSDDD</span>
-            <span>·</span>
-            <span>Team 유니하나</span>
-            <span>·</span>
-            <span>v2.0</span>
-          </div>
+          <div className="mt-6 font-mono text-[10px] text-muted3">EUDR · CBAM · CSDDD · Team 유니하나 · v2.0</div>
         </motion.div>
       </div>
     )
