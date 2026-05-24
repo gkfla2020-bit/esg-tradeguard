@@ -379,9 +379,9 @@ export default function Step4CBAM({ skipLoading = false }: { skipLoading?: boole
                         <tr className="border-b-2 border-border bg-white">
                           <th className="text-left py-2.5 px-3 font-semibold text-muted2">연도</th>
                           <th className="text-left py-2.5 px-3 font-semibold text-muted2">폐지율</th>
-                          <th className="text-left py-2.5 px-3 font-semibold text-emerald-600">실측 제출</th>
-                          <th className="text-left py-2.5 px-3 font-semibold text-red-600">EU 기본값</th>
-                          <th className="text-left py-2.5 px-3 font-semibold text-blue-600">벤치마크</th>
+                          <th className="text-left py-2.5 px-3 font-semibold text-ink">실측 제출</th>
+                          <th className="text-left py-2.5 px-3 font-semibold text-muted2">EU 기본값</th>
+                          <th className="text-left py-2.5 px-3 font-semibold text-muted2">벤치마크</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -390,9 +390,9 @@ export default function Step4CBAM({ skipLoading = false }: { skipLoading?: boole
                             className="border-b border-border hover:bg-white/60 transition-colors">
                             <td className="py-2 px-3 font-mono font-semibold text-ink">{row.year}</td>
                             <td className="py-2 px-3 font-mono text-muted3">{row.phaseIn.toFixed(1)}%</td>
-                            <td className="py-2 px-3 font-mono text-emerald-600 font-medium">{row['실측 제출'].toFixed(1)}억</td>
-                            <td className="py-2 px-3 font-mono text-red-600">{row['EU 기본값'].toFixed(1)}억</td>
-                            <td className="py-2 px-3 font-mono text-blue-600">{row['벤치마크 달성'].toFixed(1)}억</td>
+                            <td className="py-2 px-3 font-mono text-ink font-medium">{row['실측 제출'].toFixed(1)}억</td>
+                            <td className="py-2 px-3 font-mono text-muted2">{row['EU 기본값'].toFixed(1)}억</td>
+                            <td className="py-2 px-3 font-mono text-muted3">{row['벤치마크 달성'].toFixed(1)}억</td>
                           </motion.tr>
                         ))}
                       </tbody>
@@ -402,18 +402,20 @@ export default function Step4CBAM({ skipLoading = false }: { skipLoading?: boole
                   {/* Comparison */}
                   <div className="bg-surface rounded-card border border-border p-5">
                     <div className="text-[13px] font-bold text-ink mb-4">2034년 기준 — 기본값 vs 실측 비용 비교</div>
-                    <div className="grid grid-cols-3 text-center gap-4">
+                    <div className="flex items-center justify-between">
                       <div>
-                        <div className="font-mono text-[28px] font-black text-red-600"><span className="text-[16px] align-top">↑</span>{costData[costData.length - 1]['EU 기본값'].toFixed(1)}억</div>
-                        <div className="text-[11px] text-muted2 mt-1">기본값 적용 시</div>
+                        <div className="text-[11px] text-muted3 mb-0.5">기본값 적용</div>
+                        <div className="font-mono text-[18px] font-bold text-ink">{costData[costData.length - 1]['EU 기본값'].toFixed(1)}억 원</div>
                       </div>
+                      <div className="text-muted3 text-[14px]">→</div>
                       <div>
-                        <div className="font-mono text-[28px] font-black text-emerald-600"><span className="text-[16px] align-top">↓</span>{costData[costData.length - 1]['실측 제출'].toFixed(1)}억</div>
-                        <div className="text-[11px] text-muted2 mt-1">실측 제출 시</div>
+                        <div className="text-[11px] text-muted3 mb-0.5">실측 제출</div>
+                        <div className="font-mono text-[18px] font-bold text-ink">{costData[costData.length - 1]['실측 제출'].toFixed(1)}억 원</div>
                       </div>
+                      <div className="text-muted3 text-[14px]">=</div>
                       <div>
-                        <div className="font-mono text-[28px] font-black text-ink">↓{finalSaving}억</div>
-                        <div className="text-[11px] text-muted2 mt-1">연간 절감액</div>
+                        <div className="text-[11px] text-muted3 mb-0.5">절감액</div>
+                        <div className="font-mono text-[18px] font-bold text-ink">{finalSaving}억 원</div>
                       </div>
                     </div>
                     {/* 비즈니스 권고사항 */}
