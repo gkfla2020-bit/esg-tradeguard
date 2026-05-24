@@ -505,7 +505,10 @@ export default function Step5Satellite({ skipLoading = false }: { skipLoading?: 
                 <span>Central Kalimantan, Indonesia</span><span>·</span>
                 <span>Sentinel-2 L2A · 10m</span><span>·</span>
                 <span>U-Net + Grad-CAM</span>
-                <span className="ml-auto flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />Analyzed just now</span>
+                <span className="ml-auto flex items-center gap-2">
+                  <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />Analyzed just now</span>
+                  <button className="px-2 py-0.5 rounded border border-border text-[9px] font-medium text-muted2 hover:bg-surface2 hover:text-ink transition-colors">PDF Report</button>
+                </span>
               </div>
             </motion.div>
           )}

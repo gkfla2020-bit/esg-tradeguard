@@ -395,6 +395,12 @@ export default function Step4CBAM({ skipLoading = false }: { skipLoading?: boole
                         <div className="text-[11px] text-muted2 mt-1">연간 절감액</div>
                       </div>
                     </div>
+                    <div className="mt-4 pt-3 border-t border-border flex items-center justify-between">
+                      <span className="text-[10px] text-muted3">시뮬레이션 결과를 CBAM 신고서에 첨부할 수 있습니다.</span>
+                      <button className="px-4 py-1.5 rounded-md border border-border text-[11px] font-medium text-muted2 hover:bg-surface2 hover:text-ink transition-colors active:scale-[0.97]">
+                        CSV 내보내기
+                      </button>
+                    </div>
                   </div>
                 </div>
               </motion.div>
