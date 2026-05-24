@@ -424,7 +424,20 @@ export default function Step4CBAM({ skipLoading = false }: { skipLoading?: boole
                     </div>
                     <div className="mt-3 pt-3 border-t border-border flex items-center justify-between">
                       <span className="text-[11px] text-muted3">시뮬레이션 결과를 CBAM 신고서에 첨부 가능</span>
-                      <button className="px-4 py-1.5 rounded-md border border-border text-[11px] font-medium text-muted2 hover:bg-surface2 hover:text-ink transition-colors active:scale-[0.98]">
+                      <button
+                        onClick={() => {
+                          const header = 'Year,Phase-in(%),Actual(억),EU Default(억),Benchmark(억)\n'
+                          const rows = costData.map(r => `${r.year},${r.phaseIn.toFixed(1)},${r['실측 제출'].toFixed(2)},${r['EU 기본값'].toFixed(2)},${r['벤치마크 달성'].toFixed(2)}`).join('\n')
+                          const blob = new Blob([header + rows], { type: 'text/csv' })
+                          const url = URL.createObjectURL(blob)
+                          const a = document.createElement('a')
+                          a.href = url
+                          a.download = `CBAM_Simulation_${new Date().toISOString().slice(0,10)}.csv`
+                          a.click()
+                          URL.revokeObjectURL(url)
+                        }}
+                        className="px-4 py-1.5 rounded-md border border-border text-[11px] font-medium text-muted2 hover:bg-surface2 hover:text-ink transition-colors active:scale-[0.98]"
+                      >
                         CSV 내보내기
                       </button>
                     </div>
