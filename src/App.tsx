@@ -55,43 +55,69 @@ export default function App() {
   // ─── Landing Screen ───────────────────────────────────────────────
   if (!started) {
     return (
-      <div className="h-screen flex flex-col items-center justify-center bg-white">
+      <div className="h-screen bg-white flex">
+        {/* Left — content */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="text-center max-w-[480px]"
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="flex-1 flex flex-col justify-center px-12 lg:px-16 max-w-[640px]"
         >
           {/* Logo */}
-          <div className="flex items-center justify-center gap-3 mb-8">
-            <svg width={36} height={36} viewBox="0 0 20 20" fill="none">
+          <div className="flex items-center gap-3 mb-12">
+            <svg width={28} height={28} viewBox="0 0 20 20" fill="none">
               <circle cx="10" cy="10" r="9" stroke="#0A0A0A" strokeWidth="1.5" />
               <path d="M10 1v18M1 10h18" stroke="#0A0A0A" strokeWidth="1.5" />
               <circle cx="14" cy="6" r="1.5" fill="#0A0A0A" />
             </svg>
-            <span className="font-heading font-bold text-[28px] text-ink tracking-tight">EcoTrade</span>
+            <span className="font-heading font-semibold text-[18px] text-ink tracking-tight">EcoTrade</span>
           </div>
 
-          {/* Tagline */}
-          <p className="text-[15px] text-muted2 leading-relaxed mb-2">
-            EU 환경 규제 통합 컴플라이언스 플랫폼
+          {/* Title */}
+          <h1 className="font-heading text-[42px] font-bold text-ink tracking-tight leading-[1.1] mb-4">
+            EU 환경 규제<br />통합 컴플라이언스
+          </h1>
+          <p className="text-[16px] text-muted2 leading-relaxed mb-3 max-w-[400px]">
+            EUDR 산림전용 검증, CBAM 탄소비용 산정, CSDDD 공급망 실사를 하나의 파이프라인으로.
           </p>
-          <p className="text-[13px] text-muted3 mb-10">
-            EUDR · CBAM · CSDDD — 서류 검증부터 위성 분석까지
-          </p>
+          <div className="flex items-center gap-3 text-[12px] text-muted3 font-mono mb-10">
+            <span className="px-2 py-0.5 bg-surface2 rounded">EUDR</span>
+            <span className="px-2 py-0.5 bg-surface2 rounded">CBAM</span>
+            <span className="px-2 py-0.5 bg-surface2 rounded">CSDDD</span>
+          </div>
 
           {/* CTA */}
           <button
             onClick={() => setStarted(true)}
-            className="px-8 py-3.5 bg-ink text-white rounded-lg text-[14px] font-semibold hover:bg-ink2 transition-colors active:scale-[0.98]"
+            className="w-fit px-8 py-3.5 bg-ink text-white rounded-lg text-[14px] font-semibold hover:bg-ink2 transition-colors active:scale-[0.97]"
           >
             새 케이스 시작
           </button>
 
           {/* Footer */}
-          <div className="mt-16 font-mono text-[10px] text-muted3 space-y-1">
-            <div>Team 유니하나 · 하나은행 대학생 연합</div>
-            <div>v2.0 · {new Date().toISOString().slice(0, 10)}</div>
+          <div className="mt-auto pt-12 font-mono text-[10px] text-muted3 flex items-center gap-4">
+            <span>Team 유니하나</span>
+            <span>v2.0</span>
+            <span>{new Date().toISOString().slice(0, 10)}</span>
+          </div>
+        </motion.div>
+
+        {/* Right — visual */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="hidden lg:flex flex-1 bg-surface items-center justify-center border-l border-border"
+        >
+          <div className="text-center space-y-6">
+            <div className="grid grid-cols-3 gap-3 opacity-40">
+              {[2019, 2020, 2021, 2022, 2023, 2024].map(yr => (
+                <div key={yr} className="w-24 h-24 rounded-lg overflow-hidden border border-border">
+                  <img src={`/satellite/orig_${yr}.png`} alt="" className="w-full h-full object-cover" />
+                </div>
+              ))}
+            </div>
+            <p className="font-mono text-[10px] text-muted3">Sentinel-2 · Central Kalimantan · 2019–2024</p>
           </div>
         </motion.div>
       </div>
