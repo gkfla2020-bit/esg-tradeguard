@@ -94,30 +94,39 @@ export default function App() {
           transition={{ duration: 1.2, delay: 0.3 }}
           className="flex-1 relative"
         >
-          <div className="w-full h-full bg-[#0a0a0a] relative">
-            {/* @ts-ignore */}
-            <model-viewer
-              src="/forest_small.glb"
-              loading="eager"
-              auto-rotate
-              auto-rotate-delay="0"
-              rotation-per-second="4deg"
-              camera-orbit="0deg 75deg 2m"
-              field-of-view="60deg"
-              environment-image="neutral"
-              shadow-intensity="1"
-              exposure="2"
-              camera-controls
-              min-camera-orbit="auto auto 0.5m"
-              poster="/satellite/forest_aerial.jpg"
-              style={{ width: '100%', height: '100%', background: '#0a0f0a' }}
-            />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,#0a0a0a_85%)] pointer-events-none" />
-            <div className="absolute top-4 left-4 font-mono text-[9px] text-white/25 space-y-0.5 pointer-events-none">
-              <div>2.50S 111.79E</div>
-              <div>ALT 420m AGL</div>
+          <div className="w-full h-full bg-[#0a0a0a] overflow-hidden relative flex flex-col items-center justify-center">
+            {/* Pipeline visualization */}
+            <div className="relative w-[320px]">
+              {/* Steps flow */}
+              {[
+                { icon: '01', label: '서류 접수', sub: 'Document Intake' },
+                { icon: '02', label: 'OCR 추출', sub: 'AI Extraction' },
+                { icon: '03', label: '규제 심사', sub: 'Compliance Check' },
+                { icon: '04', label: 'CBAM 비용', sub: 'Carbon Cost' },
+                { icon: '05', label: '위성 검증', sub: 'Satellite CNN' },
+              ].map((s, i) => (
+                <div key={i} className="flex items-center gap-4 mb-1">
+                  <div className="w-9 h-9 rounded-lg border border-white/10 flex items-center justify-center font-mono text-[11px] text-white/50 shrink-0">
+                    {s.icon}
+                  </div>
+                  <div className="flex-1 border-b border-white/5 pb-3 pt-2">
+                    <div className="text-[13px] text-white/80 font-medium">{s.label}</div>
+                    <div className="text-[10px] text-white/30 font-mono">{s.sub}</div>
+                  </div>
+                </div>
+              ))}
             </div>
-            <div className="absolute bottom-4 right-4 font-mono text-[9px] text-white/25 pointer-events-none">Terrain Scan</div>
+            {/* Decorative elements */}
+            <div className="absolute top-6 right-6 font-mono text-[9px] text-white/20 text-right space-y-1">
+              <div>EUDR 2023/1115</div>
+              <div>CBAM 2023/956</div>
+              <div>CSDDD 2024/1760</div>
+            </div>
+            <div className="absolute bottom-6 left-6 font-mono text-[9px] text-white/20">
+              Compliance Pipeline v2.0
+            </div>
+            {/* Subtle grid background */}
+            <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
           </div>
         </motion.div>
       </div>
