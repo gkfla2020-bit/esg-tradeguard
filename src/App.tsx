@@ -94,20 +94,26 @@ export default function App() {
           transition={{ duration: 1.2, delay: 0.3 }}
           className="flex-1 relative"
         >
-          <div className="w-full h-full bg-[#0a0a0a] overflow-hidden relative">
-            <div className="absolute inset-0" style={{ perspective: '800px' }}>
-              <div className="absolute inset-[-40%] animate-drift" style={{ transform: 'rotateX(55deg) rotateZ(-10deg)' }}>
-                <img src="/satellite/forest_aerial.jpg" alt="" className="w-full h-full object-cover opacity-80" style={{ filter: 'saturate(1.3) contrast(1.1)' }} />
-                <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
-              </div>
-            </div>
-            <div className="absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent animate-scan" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,#0a0a0a_80%)]" />
-            <div className="absolute top-4 left-4 font-mono text-[9px] text-white/25 space-y-0.5">
+          <div className="w-full h-full bg-[#0a0a0a] relative">
+            {/* @ts-ignore */}
+            <model-viewer
+              src="/forest_path.glb"
+              auto-rotate
+              auto-rotate-delay={0}
+              rotation-per-second="8deg"
+              camera-orbit="45deg 60deg 20m"
+              camera-target="0m 0m 0m"
+              environment-image="neutral"
+              shadow-intensity="0.5"
+              exposure="0.8"
+              style={{ width: '100%', height: '100%', background: '#0a0a0a' }}
+            />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,#0a0a0a_85%)] pointer-events-none" />
+            <div className="absolute top-4 left-4 font-mono text-[9px] text-white/25 space-y-0.5 pointer-events-none">
               <div>2.50S 111.79E</div>
               <div>ALT 420m AGL</div>
             </div>
-            <div className="absolute bottom-4 right-4 font-mono text-[9px] text-white/25">Terrain Scan</div>
+            <div className="absolute bottom-4 right-4 font-mono text-[9px] text-white/25 pointer-events-none">Terrain Scan</div>
           </div>
         </motion.div>
       </div>
