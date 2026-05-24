@@ -241,6 +241,17 @@ export default function Step3Regulation({ skipLoading = false }: { skipLoading?:
                   </div>
                 </motion.div>
               )}
+
+              {/* 다음 단계 안내 */}
+              {phase === 'done' && (
+                <div className="mt-4 bg-surface rounded-card border border-border p-4 flex items-center justify-between">
+                  <div>
+                    <div className="text-[12px] font-semibold text-ink">규제 심사 완료</div>
+                    <div className="text-[11px] text-muted2 mt-0.5">다음 단계에서 CBAM 탄소 비용을 산정하고, 위성 검증으로 최종 판정합니다.</div>
+                  </div>
+                  <div className="text-[10px] text-muted3 font-mono">→ CBAM · Satellite</div>
+                </div>
+              )}
             </motion.div>
           )}
         </AnimatePresence>

@@ -212,6 +212,17 @@ export default function Step2OCR({ skipLoading = false }: { skipLoading?: boolea
                   </div>
                 </motion.div>
               )}
+
+              {/* 다음 단계 안내 */}
+              {phase === 'done' && (
+                <div className="mt-4 bg-surface rounded-card border border-border p-4 flex items-center justify-between">
+                  <div>
+                    <div className="text-[12px] font-semibold text-ink">추출 완료</div>
+                    <div className="text-[11px] text-muted2 mt-0.5">다음 단계에서 이 데이터가 EU 규제를 충족하는지 자동 판정합니다.</div>
+                  </div>
+                  <div className="text-[10px] text-muted3 font-mono">→ Regulation</div>
+                </div>
+              )}
             </motion.div>
           )}
         </AnimatePresence>

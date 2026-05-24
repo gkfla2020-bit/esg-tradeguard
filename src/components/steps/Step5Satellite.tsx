@@ -524,6 +524,19 @@ export default function Step5Satellite({ skipLoading = false }: { skipLoading?: 
                 </motion.div>
               )}
 
+              {/* 최종 CTA */}
+              {visibleBars >= NDVI_DATA.length && (
+                <div className="mt-5 bg-ink rounded-card p-5 flex items-center justify-between">
+                  <div>
+                    <div className="text-[13px] font-semibold text-white">모든 검증 완료</div>
+                    <div className="text-[11px] text-white/60 mt-0.5">5단계 파이프라인 결과를 기반으로 DDS 리포트를 생성할 수 있습니다.</div>
+                  </div>
+                  <button className="px-5 py-2.5 bg-white text-ink rounded-lg text-[12px] font-semibold hover:bg-white/90 transition-colors active:scale-[0.97]">
+                    DDS 리포트 생성
+                  </button>
+                </div>
+              )}
+
               {/* Footer */}
               <div className="mt-4 font-mono text-[10px] text-muted3 flex items-center gap-3">
                 <span>2.50°S 111.79°E</span><span>·</span>
