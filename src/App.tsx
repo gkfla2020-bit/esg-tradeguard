@@ -84,13 +84,23 @@ export default function App() {
           {/* CTA */}
           <button
             onClick={() => setStarted(true)}
-            className="w-fit px-8 py-3.5 bg-ink text-white rounded-xl text-[15px] font-semibold hover:bg-ink2 transition-all active:scale-[0.97] shadow-lg hover:shadow-xl"
+            className="w-fit px-7 py-3 bg-ink text-white rounded-lg text-[14px] font-semibold hover:bg-ink2 transition-all active:scale-[0.97]"
           >
-            새 케이스 시작 →
+            새 케이스 시작
           </button>
 
+          {/* Supported regulations */}
+          <div className="mt-12 pt-6 border-t border-border">
+            <div className="font-mono text-[9px] text-muted3 uppercase tracking-wide mb-3">Supported Regulations</div>
+            <div className="flex gap-6 text-[12px] text-muted2">
+              <div><span className="font-semibold text-ink">EUDR</span> <span className="text-muted3">· 산림전용</span></div>
+              <div><span className="font-semibold text-ink">CBAM</span> <span className="text-muted3">· 탄소비용</span></div>
+              <div><span className="font-semibold text-ink">CSDDD</span> <span className="text-muted3">· 공급망</span></div>
+            </div>
+          </div>
+
           {/* Footer */}
-          <div className="mt-auto pt-8 font-mono text-[10px] text-muted3 flex items-center gap-4">
+          <div className="mt-auto pt-6 font-mono text-[10px] text-muted3 flex items-center gap-4">
             <span>Team 유니하나</span>
             <span>v2.0</span>
             <span>{new Date().toISOString().slice(0, 10)}</span>
