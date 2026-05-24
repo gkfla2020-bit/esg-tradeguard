@@ -478,11 +478,12 @@ export default function Step5Satellite({ skipLoading = false }: { skipLoading?: 
               )}
 
               {/* Footer */}
-              <div className="mt-4 font-mono text-[10px] text-muted3 flex gap-3">
+              <div className="mt-4 font-mono text-[10px] text-muted3 flex items-center gap-3">
                 <span>2.50°S 111.79°E</span><span>·</span>
                 <span>Central Kalimantan, Indonesia</span><span>·</span>
-                <span>Sentinel-2 Cloudless · 10m</span><span>·</span>
-                <span>U-Net + Grad-CAM + NDVI</span>
+                <span>Sentinel-2 L2A · 10m</span><span>·</span>
+                <span>U-Net + Grad-CAM</span>
+                <span className="ml-auto flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />Analyzed just now</span>
               </div>
             </motion.div>
           )}

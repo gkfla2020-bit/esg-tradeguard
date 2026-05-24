@@ -128,13 +128,17 @@ export default function App() {
         )}
 
         {/* Footer */}
-        <div className="border-t border-border px-4 py-3">
+        <div className="border-t border-border px-4 py-3 space-y-2">
           <div className="flex items-center gap-2.5">
             <div className="w-7 h-7 rounded-full bg-ink text-white flex items-center justify-center text-[10px] font-semibold">UH</div>
             <div className="flex-1 min-w-0">
               <div className="text-[12px] text-ink font-medium truncate">Team 유니하나</div>
               <div className="font-mono text-[9px] text-muted3">ECO-2026-0523</div>
             </div>
+          </div>
+          <div className="flex items-center gap-1.5 text-[9px] text-muted3 font-mono">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+            <span>Synced {clock.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' })}</span>
           </div>
         </div>
       </aside>
@@ -143,12 +147,14 @@ export default function App() {
       <main className="flex-1 flex flex-col overflow-hidden">
         {/* Top header */}
         <header className="h-[52px] border-b border-border bg-white flex items-center px-8 justify-between shrink-0">
-          <div className="flex items-center gap-4">
-            <span className="font-heading text-[16px] font-semibold text-ink tracking-tight">
+          <div className="flex items-center gap-2">
+            <span className="text-[12px] text-muted3">Pipeline</span>
+            <span className="text-muted3 text-[10px]">/</span>
+            <span className="font-heading text-[15px] font-semibold text-ink tracking-tight">
               {STEPS.find(s => s.id === step)?.label}
             </span>
-            <span className="font-mono text-[10px] text-muted3 bg-surface2 px-2 py-0.5 rounded">
-              step {step} / {STEPS.length}
+            <span className="font-mono text-[9px] text-muted3 bg-surface2 px-1.5 py-0.5 rounded ml-1">
+              {step}/{STEPS.length}
             </span>
           </div>
           <div className="flex items-center gap-5 font-mono text-[11px] text-muted2">
