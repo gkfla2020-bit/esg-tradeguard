@@ -12,9 +12,9 @@ type StepId = 1 | 2 | 3 | 4 | 5
 const STEPS: { id: StepId; label: string; mono: string; icon: typeof Upload; desc: string }[] = [
   { id: 1, label: 'Intake', mono: 'doc.upload', icon: Upload, desc: '서류 업로드' },
   { id: 2, label: 'OCR Parse', mono: 'ocr.extract', icon: ScanText, desc: '자동 추출' },
-  { id: 3, label: 'Regulation', mono: 'reg.triage', icon: Scale, desc: '규제 심사' },
-  { id: 4, label: 'CBAM', mono: 'cbam.calc', icon: Calculator, desc: '탄소 비용' },
-  { id: 5, label: 'Satellite + CNN', mono: 'sat.verify', icon: Satellite, desc: '위성 검증' },
+  { id: 3, label: 'CBAM', mono: 'cbam.calc', icon: Calculator, desc: '탄소 비용' },
+  { id: 4, label: 'Satellite', mono: 'sat.verify', icon: Satellite, desc: '위성 검증' },
+  { id: 5, label: 'Report', mono: 'report.gen', icon: Scale, desc: '통합 보고서' },
 ]
 
 export default function App() {
@@ -88,7 +88,7 @@ export default function App() {
 
             {/* Pipeline steps */}
             <div className="flex items-center mb-10">
-              {['서류 접수', 'OCR 추출', '규제 심사', 'CBAM 산정', '위성 검증'].map((label, i) => (
+              {['서류 접수', 'OCR 추출', 'CBAM 산정', '위성 검증', '통합 보고서'].map((label, i) => (
                 <div key={i} className="flex items-center">
                   <div className="flex flex-col items-center">
                     <div className="w-7 h-7 rounded-full border-2 border-ink flex items-center justify-center font-mono text-[10px] font-bold text-ink">{i + 1}</div>
@@ -271,9 +271,9 @@ export default function App() {
             >
               {step === 1 && <Step1Intake skipLoading={completedSteps.current.has(1)} />}
               {step === 2 && <Step2OCR skipLoading={completedSteps.current.has(2)} />}
-              {step === 3 && <Step3Regulation skipLoading={completedSteps.current.has(3)} satelliteCompleted={completedSteps.current.has(5)} />}
-              {step === 4 && <Step4CBAM skipLoading={completedSteps.current.has(4)} />}
-              {step === 5 && <Step5Satellite skipLoading={completedSteps.current.has(5)} />}
+              {step === 3 && <Step4CBAM skipLoading={completedSteps.current.has(3)} />}
+              {step === 4 && <Step5Satellite skipLoading={completedSteps.current.has(4)} />}
+              {step === 5 && <Step3Regulation skipLoading={completedSteps.current.has(5)} satelliteCompleted={completedSteps.current.has(4)} />}
             </motion.div>
           </AnimatePresence>
         </div>

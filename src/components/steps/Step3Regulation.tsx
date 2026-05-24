@@ -90,9 +90,9 @@ export default function Step3Regulation({ skipLoading = false, satelliteComplete
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
         {phase !== 'idle' && (
           <div className="mb-4">
-            <h2 className="font-heading text-[22px] font-bold text-ink tracking-tight">규제 적합성 심사</h2>
+            <h2 className="font-heading text-[22px] font-bold text-ink tracking-tight">통합 컴플라이언스 보고서</h2>
             <p className="text-[13px] text-muted2 mt-1">
-              추출된 데이터가 EU 규제를 충족하는지 조항별로 자동 판정합니다. 위반 시 수입 금지 또는 과징금 대상입니다.
+              서류 검증, CBAM 탄소 분석, 위성 환경 검증 결과를 종합하여 EUDR/CBAM/CSDDD 규제별 적합성을 최종 판정합니다.
             </p>
           </div>
         )}
@@ -100,12 +100,12 @@ export default function Step3Regulation({ skipLoading = false, satelliteComplete
         <AnimatePresence mode="wait">
           {phase === 'idle' && (
             <motion.div key="idle" exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.2 }} className="border border-border rounded-card p-5 bg-white">
-              <h2 className="font-heading text-[20px] font-bold text-ink tracking-tight mb-1">규제 적합성 심사</h2>
-              <p className="text-[12px] text-muted2 mb-4">EUDR · CBAM · CSDDD {RULES.length}개 조항 자동 대조. 위반 시 수입 금지 또는 과징금.</p>
+              <h2 className="font-heading text-[20px] font-bold text-ink tracking-tight mb-1">통합 컴플라이언스 보고서</h2>
+              <p className="text-[12px] text-muted2 mb-4">모든 검증 결과를 종합하여 {RULES.length}개 규제 조항 최종 판정을 생성합니다.</p>
               <div className="flex gap-2">
                 <button onClick={() => { startTime.current = Date.now(); setPhase('loading') }}
                   style={{ backgroundColor: "#0A0A0A", color: "#fff" }} className="px-5 py-2.5 rounded-lg text-[13px] font-semibold hover:opacity-90 transition-all active:scale-[0.98] flex items-center gap-2">
-                  <Scale size={14} /> 규제 심사 실행
+                  <Scale size={14} /> 보고서 생성
                 </button>
                 <button onClick={() => { setPhase('done'); setVisibleCount(RULES.length); setElapsed(5.9) }}
                   className="px-4 py-2.5 border border-border rounded-lg text-[12px] text-muted2 hover:bg-surface2 hover:text-ink hover:border-border2 transition-all">
@@ -126,7 +126,7 @@ export default function Step3Regulation({ skipLoading = false, satelliteComplete
             >
               <div className="flex items-center gap-2 mb-4">
                 <Scale size={16} className="text-ink" />
-                <span className="text-[13px] font-semibold text-ink">규제 심사 진행 중</span>
+                <span className="text-[13px] font-semibold text-ink">보고서 생성 중</span>
                 <span className="font-mono text-[10px] text-muted3 ml-auto">3 regulations · 9 articles</span>
               </div>
               <PhaseLoader phases={TRIAGE_PHASES} onComplete={() => setPhase('revealing')} />
@@ -251,14 +251,16 @@ export default function Step3Regulation({ skipLoading = false, satelliteComplete
                 </motion.div>
               )}
 
-              {/* 다음 단계 안내 */}
+              {/* 최종 CTA */}
               {phase === 'done' && (
-                <div className="mt-4 bg-surface rounded-card border border-border p-4 flex items-center justify-between">
+                <div className="mt-4 p-4 rounded-card flex items-center justify-between" style={{ backgroundColor: '#0A0A0A' }}>
                   <div>
-                    <div className="text-[12px] font-semibold text-ink">규제 심사 완료</div>
-                    <div className="text-[11px] text-muted2 mt-0.5">다음 단계에서 CBAM 탄소 비용을 산정하고, 위성 검증으로 최종 판정합니다.</div>
+                    <div className="text-[13px] font-semibold text-white">컴플라이언스 검증 완료</div>
+                    <div className="text-[11px] text-white/60 mt-0.5">모든 파이프라인 결과가 반영된 최종 DDS 보고서를 내보낼 수 있습니다.</div>
                   </div>
-                  <div className="text-[10px] text-muted3 font-mono">→ CBAM · Satellite</div>
+                  <button className="px-5 py-2.5 bg-white text-ink rounded-lg text-[12px] font-semibold hover:bg-white/90 transition-colors active:scale-[0.98]">
+                    DDS 보고서 내보내기
+                  </button>
                 </div>
               )}
             </motion.div>

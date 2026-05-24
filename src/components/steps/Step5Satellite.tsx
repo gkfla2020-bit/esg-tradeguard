@@ -545,8 +545,8 @@ export default function Step5Satellite({ skipLoading = false }: { skipLoading?: 
               {visibleBars >= NDVI_DATA.length && (
                 <div className="mt-5 bg-ink rounded-card p-5 flex items-center justify-between">
                   <div>
-                    <div className="text-[13px] font-semibold text-white">모든 검증 완료</div>
-                    <div className="text-[11px] text-white/60 mt-0.5">5단계 파이프라인 결과를 기반으로 DDS 리포트를 생성할 수 있습니다.</div>
+                    <div className="text-[13px] font-semibold text-white">위성 검증 완료</div>
+                    <div className="text-[11px] text-white/60 mt-0.5">다음 단계에서 모든 결과를 종합한 통합 보고서를 생성합니다.</div>
                   </div>
                   <button
                     onClick={() => {
