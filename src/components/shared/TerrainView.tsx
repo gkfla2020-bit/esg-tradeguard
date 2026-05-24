@@ -4,148 +4,104 @@ import { useTexture } from '@react-three/drei'
 import * as THREE from 'three'
 
 function Terrain() {
-  const texture = useTexture('/satellite/orig_2020.png')
+  const texture = useTexture('/satellite/orig_2021.png')
   const meshRef = useRef<THREE.Mesh>(null)
+  const geoRef = useRef<THREE.PlaneGeometry>(null)
 
-  // Use the satellite image itself as displacement (darker = lower, brighter = higher)
-  const displacementMap = useMemo(() => {
-    const canvas = document.createElement('canvas')
-    canvas.width = 256
-    canvas.height = 256
-    const ctx = canvas.getContext('2d')!
-    const img = new Image()
-    img.src = '/satellite/orig_2020.png'
-    // Create a grayscale displacement from the texture
-    ctx.fillStyle = '#444'
-    ctx.fillRect(0, 0, 256, 256)
-    // Add some noise for terrain variation
-    for (let i = 0; i < 2000; i++) {
-      const x = Math.random() * 256
-      const y = Math.random() * 256
-      const r = Math.random() * 8 + 2
-      const v = Math.floor(Math.random() * 100 + 50)
-      ctx.fillStyle = `rgb(${v},${v},${v})`
-      ctx.beginPath()
-      ctx.arc(x, y, r, 0, Math.PI * 2)
-      ctx.fill()
+  // Generate realistic displacement from noise
+  useMemo(() => {
+    if (!geoRef.current) return
+    const pos = geoRef.current.attributes.position
+    for (let i = 0; i < pos.count; i++) {
+      const x = pos.getX(i)
+      const z = pos.getY(i)
+      // Multi-octave noise for natural terrain
+      const n1 = Math.sin(x * 0.8) * Math.cos(z * 0.6) * 0.4
+      const n2 = Math.sin(x * 2.1 + 1) * Math.cos(z * 1.7 + 2) * 0.15
+      const n3 = Math.sin(x * 4.3 + 3) * Math.cos(z * 3.9 + 1) * 0.05
+      pos.setZ(i, n1 + n2 + n3)
     }
-    const tex = new THREE.CanvasTexture(canvas)
-    tex.needsUpdate = true
-    return tex
+    pos.needsUpdate = true
+    geoRef.current.computeVertexNormals()
   }, [])
 
   texture.wrapS = texture.wrapT = THREE.ClampToEdgeWrapping
   texture.colorSpace = THREE.SRGBColorSpace
+  texture.anisotropy = 16
 
   return (
-    <mesh ref={meshRef} rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.5, 0]}>
-      <planeGeometry args={[16, 16, 128, 128]} />
+    <mesh ref={meshRef} rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]} receiveShadow>
+      <planeGeometry ref={geoRef} args={[20, 20, 200, 200]} />
       <meshStandardMaterial
         map={texture}
-        displacementMap={displacementMap}
-        displacementScale={1.2}
-        roughness={0.9}
+        roughness={0.85}
         metalness={0.0}
+        envMapIntensity={0.3}
       />
     </mesh>
   )
 }
 
-function ScanLine() {
+function ScanBeam() {
   const ref = useRef<THREE.Mesh>(null)
-
   useFrame(({ clock }) => {
     if (!ref.current) return
     const t = clock.getElapsedTime()
-    // Scan line moves across terrain
-    ref.current.position.z = Math.sin(t * 0.3) * 6
-    ;(ref.current.material as THREE.MeshBasicMaterial).opacity = 0.15 + Math.sin(t * 2) * 0.05
+    ref.current.position.z = Math.sin(t * 0.25) * 7
+    ref.current.position.x = Math.cos(t * 0.18) * 3
+    ;(ref.current.material as THREE.MeshBasicMaterial).opacity = 0.12 + Math.sin(t * 3) * 0.04
   })
-
   return (
-    <mesh ref={ref} rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.5, 0]}>
-      <planeGeometry args={[16, 0.08]} />
-      <meshBasicMaterial color="#10b981" transparent opacity={0.2} />
+    <mesh ref={ref} position={[0, 1.5, 0]}>
+      <boxGeometry args={[12, 0.02, 0.04]} />
+      <meshBasicMaterial color="#22d3ee" transparent opacity={0.15} />
     </mesh>
-  )
-}
-
-function GridOverlay() {
-  const ref = useRef<THREE.LineSegments>(null)
-
-  const geometry = useMemo(() => {
-    const geo = new THREE.BufferGeometry()
-    const positions: number[] = []
-    const size = 16
-    const divisions = 16
-    const step = size / divisions
-    const half = size / 2
-
-    for (let i = 0; i <= divisions; i++) {
-      const pos = -half + i * step
-      positions.push(pos, 0.3, -half, pos, 0.3, half)
-      positions.push(-half, 0.3, pos, half, 0.3, pos)
-    }
-    geo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3))
-    return geo
-  }, [])
-
-  useFrame(({ clock }) => {
-    if (!ref.current) return
-    ;(ref.current.material as THREE.LineBasicMaterial).opacity = 0.06 + Math.sin(clock.getElapsedTime() * 0.5) * 0.02
-  })
-
-  return (
-    <lineSegments ref={ref} geometry={geometry}>
-      <lineBasicMaterial color="#ffffff" transparent opacity={0.08} />
-    </lineSegments>
   )
 }
 
 function CameraRig() {
   useFrame(({ camera, clock }) => {
     const t = clock.getElapsedTime()
-    // Cinematic drone path: slow orbit + slight altitude change
-    const radius = 5 + Math.sin(t * 0.1) * 1.5
-    const speed = 0.08
-    camera.position.x = Math.sin(t * speed) * radius
-    camera.position.z = Math.cos(t * speed) * radius
-    camera.position.y = 3 + Math.sin(t * 0.15) * 0.8
-    // Look slightly ahead of center for motion feel
-    const lookX = Math.sin(t * speed + 0.3) * 2
-    const lookZ = Math.cos(t * speed + 0.3) * 2
-    camera.lookAt(lookX, 0, lookZ)
+    const speed = 0.06
+    const r = 6 + Math.sin(t * 0.05) * 2
+    camera.position.x = Math.sin(t * speed) * r
+    camera.position.z = Math.cos(t * speed) * r
+    camera.position.y = 2.8 + Math.sin(t * 0.1) * 0.6
+    // Look at a point slightly ahead in orbit direction
+    const lx = Math.sin(t * speed + 0.5) * 2
+    const lz = Math.cos(t * speed + 0.5) * 2
+    camera.lookAt(lx, -0.3, lz)
   })
   return null
 }
 
-function DataPoints() {
-  const ref = useRef<THREE.Group>(null)
-  const points = useMemo(() => {
-    return Array.from({ length: 8 }, () => ({
-      x: (Math.random() - 0.5) * 12,
-      z: (Math.random() - 0.5) * 12,
-      scale: 0.03 + Math.random() * 0.04,
-    }))
+function Atmosphere() {
+  const ref = useRef<THREE.Points>(null)
+  const [positions, sizes] = useMemo(() => {
+    const count = 100
+    const pos = new Float32Array(count * 3)
+    const sz = new Float32Array(count)
+    for (let i = 0; i < count; i++) {
+      pos[i * 3] = (Math.random() - 0.5) * 20
+      pos[i * 3 + 1] = Math.random() * 3 + 0.5
+      pos[i * 3 + 2] = (Math.random() - 0.5) * 20
+      sz[i] = Math.random() * 0.02 + 0.005
+    }
+    return [pos, sz]
   }, [])
 
   useFrame(({ clock }) => {
     if (!ref.current) return
-    ref.current.children.forEach((child, i) => {
-      const mesh = child as THREE.Mesh
-      mesh.position.y = 0.8 + Math.sin(clock.getElapsedTime() * 0.8 + i) * 0.2
-    })
+    ref.current.rotation.y = clock.getElapsedTime() * 0.01
   })
 
   return (
-    <group ref={ref}>
-      {points.map((p, i) => (
-        <mesh key={i} position={[p.x, 0.8, p.z]}>
-          <sphereGeometry args={[p.scale, 8, 8]} />
-          <meshBasicMaterial color="#10b981" transparent opacity={0.7} />
-        </mesh>
-      ))}
-    </group>
+    <points ref={ref}>
+      <bufferGeometry>
+        <bufferAttribute attach="attributes-position" args={[positions, 3]} />
+      </bufferGeometry>
+      <pointsMaterial size={0.02} color="#ffffff" transparent opacity={0.25} sizeAttenuation />
+    </points>
   )
 }
 
@@ -153,21 +109,24 @@ export default function TerrainView() {
   return (
     <div className="w-full h-full">
       <Canvas
-        camera={{ position: [0, 4, 6], fov: 50, near: 0.1, far: 50 }}
+        shadows
+        camera={{ position: [0, 3, 6], fov: 45, near: 0.1, far: 50 }}
         gl={{ antialias: true }}
-        onCreated={({ gl }) => { gl.toneMapping = THREE.ACESFilmicToneMapping; gl.toneMappingExposure = 0.8 }}
-        style={{ background: '#080808' }}
+        onCreated={({ gl }) => {
+          gl.toneMapping = THREE.ACESFilmicToneMapping
+          gl.toneMappingExposure = 0.9
+        }}
+        style={{ background: 'linear-gradient(180deg, #0c0c0c 0%, #1a1a2e 100%)' }}
       >
-        <fog attach="fog" args={['#080808', 6, 16]} />
-        <ambientLight intensity={0.3} />
-        <directionalLight position={[5, 8, 3]} intensity={1.5} color="#fff5e0" />
-        <directionalLight position={[-3, 4, -5]} intensity={0.3} color="#b0c4ff" />
+        <fog attach="fog" args={['#0c0c0c', 5, 14]} />
+        <ambientLight intensity={0.2} />
+        <directionalLight position={[4, 6, 2]} intensity={2} color="#ffeedd" castShadow shadow-mapSize={1024} />
+        <directionalLight position={[-5, 3, -4]} intensity={0.4} color="#aaccff" />
         <Suspense fallback={null}>
           <Terrain />
         </Suspense>
-        <GridOverlay />
-        <ScanLine />
-        <DataPoints />
+        <ScanBeam />
+        <Atmosphere />
         <CameraRig />
       </Canvas>
     </div>
