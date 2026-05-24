@@ -84,16 +84,10 @@ export default function App() {
           {/* CTA */}
           <button
             onClick={() => setStarted(true)}
-            className="w-fit px-7 py-3 bg-ink text-white rounded-lg text-[14px] font-semibold hover:bg-ink2 transition-colors active:scale-[0.97] shadow-[0_2px_12px_rgba(0,0,0,0.25)]"
+            className="w-fit px-8 py-3.5 bg-ink text-white rounded-xl text-[15px] font-semibold hover:bg-ink2 transition-all active:scale-[0.97] shadow-lg hover:shadow-xl"
           >
-            새 케이스 시작
+            새 케이스 시작 →
           </button>
-
-          <div className="flex items-center gap-3 text-[11px] text-muted3 font-mono mt-8">
-            <span className="px-2 py-0.5 bg-surface2 rounded">EUDR</span>
-            <span className="px-2 py-0.5 bg-surface2 rounded">CBAM</span>
-            <span className="px-2 py-0.5 bg-surface2 rounded">CSDDD</span>
-          </div>
 
           {/* Footer */}
           <div className="mt-auto pt-8 font-mono text-[10px] text-muted3 flex items-center gap-4">
