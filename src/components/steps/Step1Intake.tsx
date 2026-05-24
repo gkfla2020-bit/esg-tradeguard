@@ -128,7 +128,7 @@ export default function Step1Intake({ skipLoading = false }: { skipLoading?: boo
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
       >
-        <div className="mb-6">
+        <div className="mb-4">
           <h2 className="font-heading text-[22px] font-bold text-ink tracking-tight">서류 접수</h2>
           <p className="text-[13px] text-muted2 mt-1">
             EU로 수출하려면 제품의 원산지, 합법성, 환경 영향을 증명하는 서류가 필요합니다. 최소 {requiredCount}종을 업로드하면 자동 검증이 시작됩니다.

@@ -127,15 +127,15 @@ export default function Step4CBAM({ skipLoading = false }: { skipLoading?: boole
   return (
     <section>
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
-        <div className="mb-6">
+        <div className="mb-4">
           <h2 className="font-heading text-[22px] font-bold text-ink tracking-tight"><span title="CBAM: EU 탄소국경조정메커니즘. EU로 수입되는 제품에 탄소 비용을 부과하는 제도 (2026년 본격 시행)" className="cursor-help">CBAM</span> 비용 분석</h2>
           <p className="text-[13px] text-muted2 mt-1">EU에 수출할 때 <span title="내재 탄소: 제품 생산 과정에서 배출된 CO₂ 총량" className="underline decoration-dotted cursor-help">탄소 비용</span>을 얼마나 내야 하는지, 실측 데이터를 제출하면 얼마를 줄일 수 있는지 계산합니다.</p>
         </div>
 
         {/* 핵심 메시지 — 왜 이게 중요한지 */}
-        <div className="mb-5 border border-border rounded-card bg-white p-5 flex items-start gap-4">
-          <div className="w-10 h-10 rounded-lg bg-red-50 flex items-center justify-center shrink-0">
-            <BarChart3 size={20} className="text-red-500" />
+        <div className="mb-4 border border-border rounded-card bg-white p-4 flex items-start gap-3">
+          <div className="w-9 h-9 rounded-lg bg-red-50 flex items-center justify-center shrink-0">
+            <BarChart3 size={18} className="text-red-500" />
           </div>
           <div className="flex-1">
             <div className="text-[13px] font-semibold text-ink mb-1">이 플랫폼이 없으면?</div>
