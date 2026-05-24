@@ -234,15 +234,24 @@ export default function Step5Satellite({ skipLoading = false }: { skipLoading?: 
                 </button>
 
                 {/* View toggle */}
-                <div className="ml-auto flex items-center gap-1 bg-surface2 rounded-lg p-1">
-                  {(['seg', 'cam'] as const).map(v => (
-                    <button key={v} onClick={() => setView(v)}
-                      className={`px-3.5 py-1.5 rounded-md text-[11px] font-semibold transition-all ${
-                        view === v ? 'bg-white text-ink shadow-sm' : 'text-muted2 hover:text-ink'
-                      }`}>
-                      {v === 'seg' ? 'Segmentation' : 'Grad-CAM'}
-                    </button>
-                  ))}
+                <div className="ml-auto flex items-center gap-2">
+                  <div className="flex items-center gap-1 bg-surface2 rounded-lg p-1">
+                    {(['seg', 'cam'] as const).map(v => (
+                      <button key={v} onClick={() => setView(v)}
+                        className={`px-3.5 py-1.5 rounded-md text-[11px] font-semibold transition-all ${
+                          view === v ? 'bg-white text-ink shadow-sm' : 'text-muted2 hover:text-ink'
+                        }`}>
+                        {v === 'seg' ? 'Segmentation' : 'Grad-CAM'}
+                      </button>
+                    ))}
+                  </div>
+                  <button
+                    onClick={() => { setAppPhase('idle'); setVisibleBars(0) }}
+                    className="px-3 py-1.5 rounded-md border border-border text-[10px] font-medium text-muted2 hover:bg-surface2 hover:text-ink transition-colors"
+                    title="분석 다시 실행"
+                  >
+                    재분석
+                  </button>
                 </div>
               </div>
 
