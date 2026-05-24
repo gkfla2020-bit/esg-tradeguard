@@ -17,12 +17,15 @@ const STEPS: { id: StepId; label: string; mono: string; icon: typeof Upload }[] 
   { id: 5, label: 'Satellite + CNN', mono: 'sat.verify', icon: Satellite },
 ]
 
-const CMD_ITEMS = [
-  { id: 1, label: 'Intake — 서류 접수', keywords: 'upload document 서류' },
-  { id: 2, label: 'OCR Parse — 자동 추출', keywords: 'ocr extract 추출' },
-  { id: 3, label: 'Regulation — 규제 심사', keywords: 'eudr cbam csddd 규제' },
-  { id: 4, label: 'CBAM — 비용 분석', keywords: 'carbon 탄소 비용 시뮬레이션' },
-  { id: 5, label: 'Satellite + CNN — 위성 검증', keywords: 'satellite 위성 ndvi 산림' },
+const CMD_ITEMS: { id: number; label: string; keywords: string; type: 'step' | 'action' }[] = [
+  { id: 1, label: 'Intake — 서류 접수', keywords: 'upload document 서류', type: 'step' },
+  { id: 2, label: 'OCR Parse — 자동 추출', keywords: 'ocr extract 추출', type: 'step' },
+  { id: 3, label: 'Regulation — 규제 심사', keywords: 'eudr cbam csddd 규제', type: 'step' },
+  { id: 4, label: 'CBAM — 비용 분석', keywords: 'carbon 탄소 비용 시뮬레이션', type: 'step' },
+  { id: 5, label: 'Satellite + CNN — 위성 검증', keywords: 'satellite 위성 ndvi 산림', type: 'step' },
+  { id: 10, label: 'DDS 리포트 생성', keywords: 'report pdf 보고서 export', type: 'action' },
+  { id: 11, label: '케이스 설정', keywords: 'settings 설정 config', type: 'action' },
+  { id: 12, label: '도움말', keywords: 'help 도움 documentation', type: 'action' },
 ]
 
 export default function App() {
@@ -100,16 +103,32 @@ export default function App() {
               />
               <span className="px-1.5 py-0.5 bg-surface2 rounded text-[9px] font-mono text-muted3">ESC</span>
             </div>
-            <div className="py-2 max-h-[240px] overflow-y-auto">
-              {filteredCmdItems.map(item => (
+            <div className="py-2 max-h-[280px] overflow-y-auto">
+              {filteredCmdItems.filter(i => i.type === 'step').length > 0 && (
+                <div className="px-4 py-1 text-[9px] font-mono text-muted3 uppercase tracking-wide">Steps</div>
+              )}
+              {filteredCmdItems.filter(i => i.type === 'step').map(item => (
                 <button
                   key={item.id}
                   onClick={() => { navigateStep(item.id as StepId); setCmdOpen(false) }}
-                  className="w-full flex items-center gap-3 px-4 py-2.5 text-left hover:bg-surface transition-colors"
+                  className="w-full flex items-center gap-3 px-4 py-2 text-left hover:bg-surface transition-colors"
                 >
                   <div className="w-6 h-6 rounded-md bg-surface2 flex items-center justify-center text-[10px] font-mono font-bold text-muted2">{item.id}</div>
                   <span className="text-[13px] text-ink">{item.label}</span>
                   {item.id === step && <span className="ml-auto text-[9px] font-mono text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded">current</span>}
+                </button>
+              ))}
+              {filteredCmdItems.filter(i => i.type === 'action').length > 0 && (
+                <div className="px-4 py-1 mt-1 border-t border-border text-[9px] font-mono text-muted3 uppercase tracking-wide pt-2">Actions</div>
+              )}
+              {filteredCmdItems.filter(i => i.type === 'action').map(item => (
+                <button
+                  key={item.id}
+                  onClick={() => setCmdOpen(false)}
+                  className="w-full flex items-center gap-3 px-4 py-2 text-left hover:bg-surface transition-colors"
+                >
+                  <div className="w-6 h-6 rounded-md bg-surface2 flex items-center justify-center text-[10px] text-muted3">•</div>
+                  <span className="text-[13px] text-muted2">{item.label}</span>
                 </button>
               ))}
               {filteredCmdItems.length === 0 && (
