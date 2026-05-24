@@ -165,6 +165,23 @@ export default function App() {
           </div>
         </div>
 
+        {/* Case progress */}
+        <div className="px-4 pb-3">
+          <div className="bg-white border border-border rounded-lg px-3 py-2">
+            <div className="flex items-center justify-between mb-1.5">
+              <span className="text-[10px] font-semibold text-ink">케이스 진행</span>
+              <span className="font-mono text-[9px] text-muted3">{Math.min(step, 5)}/5</span>
+            </div>
+            <div className="flex gap-1">
+              {STEPS.map(s => (
+                <div key={s.id} className={`flex-1 h-1.5 rounded-full ${
+                  s.id < step ? 'bg-emerald-500' : s.id === step ? 'bg-ink' : 'bg-surface2'
+                }`} />
+              ))}
+            </div>
+          </div>
+        </div>
+
         {/* Nav */}
         <nav className="flex-1 px-3 py-2 flex flex-col gap-0.5 overflow-y-auto">
           <div className="px-2 pt-2 pb-2 font-mono text-[9px] text-muted3 uppercase tracking-[0.06em] font-semibold">Pipeline</div>

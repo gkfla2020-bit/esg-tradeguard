@@ -280,7 +280,7 @@ export default function Step4CBAM({ skipLoading = false }: { skipLoading?: boole
                   {/* Record content */}
                   <div className="bg-surface rounded-card border border-border p-4 font-mono text-[11px] leading-relaxed mb-4">
                     <div className="text-[11px] font-sans font-semibold text-ink mb-2 flex items-center gap-1.5"><Lock size={12} /> 온체인 기록 내용</div>
-                    <div><span className="text-muted3">txHash:</span> <span className="text-emerald-700">0x{blockHash}</span></div>
+                    <div className="flex items-center gap-2"><span className="text-muted3">txHash:</span> <span className="text-emerald-700 truncate max-w-[360px]">0x{blockHash}</span><button onClick={() => navigator.clipboard.writeText('0x' + blockHash)} className="px-1.5 py-0.5 text-[8px] bg-surface2 border border-border rounded hover:bg-border transition-colors" title="복사">copy</button></div>
                     <div><span className="text-muted3">timestamp:</span> 2026-05-23T14:30:00Z</div>
                     <div><span className="text-muted3">company:</span> UniHana Trading GmbH</div>
                     <div><span className="text-muted3">product:</span> Palm Oil CPO (HS 1511.10)</div>
