@@ -223,7 +223,12 @@ export default function App() {
       {/* Main */}
       <main className="flex-1 flex flex-col overflow-hidden">
         {/* Top header */}
-        <header className="h-[52px] border-b border-border bg-white flex items-center px-8 justify-between shrink-0">
+        <header className="border-b border-border bg-white shrink-0">
+          {/* Progress bar */}
+          <div className="h-[2px] bg-surface2">
+            <motion.div className="h-full bg-ink" animate={{ width: `${(step / STEPS.length) * 100}%` }} transition={{ duration: 0.4, ease: 'easeOut' }} />
+          </div>
+          <div className="h-[50px] flex items-center px-8 justify-between">
           <div className="flex items-center gap-1.5">
             <span className="text-[12px] text-muted3">Pipeline</span>
             <ChevronRight size={10} className="text-muted3" />
@@ -239,6 +244,7 @@ export default function App() {
             <span>Palm Oil · Central Kalimantan → EU</span>
             <span className="px-2 py-0.5 bg-surface2 rounded text-muted3">EUDR 2023/1115</span>
             <span className="text-muted3">{clock.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}</span>
+          </div>
           </div>
         </header>
 
