@@ -238,7 +238,7 @@ export default function Step5Satellite({ skipLoading = false }: { skipLoading?: 
                     return (
                       <button key={yr} onClick={() => { setYear(yr); setPlaying(false) }}
                         title={`${yr}년 위성 데이터 · 산림 ${STATS[yr].forest}%`}
-                        className={`relative px-3.5 py-2 rounded-lg font-mono text-[12px] font-semibold transition-all active:scale-[0.96] ${
+                        className={`relative px-3.5 py-2 rounded-lg font-mono text-[12px] font-semibold transition-all active:scale-[0.98] ${
                           active ? 'bg-ink text-white shadow-sm' : 'bg-white border border-border text-muted2 hover:border-border2 hover:text-ink'
                         }`}>
                         {yr}
@@ -253,7 +253,7 @@ export default function Step5Satellite({ skipLoading = false }: { skipLoading?: 
                 {/* Timeline play */}
                 <button
                   onClick={playing ? () => setPlaying(false) : startTimeline}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg text-[12px] font-semibold transition-all active:scale-[0.96] ${
+                  className={`flex items-center gap-2 px-4 py-2 rounded-lg text-[12px] font-semibold transition-all active:scale-[0.98] ${
                     playing ? 'bg-red-500 text-white' : 'bg-blue-600 text-white hover:bg-blue-700'
                   }`}
                 >
@@ -560,7 +560,7 @@ export default function Step5Satellite({ skipLoading = false }: { skipLoading?: 
                     <div className="text-[13px] font-semibold text-white">모든 검증 완료</div>
                     <div className="text-[11px] text-white/60 mt-0.5">5단계 파이프라인 결과를 기반으로 DDS 리포트를 생성할 수 있습니다.</div>
                   </div>
-                  <button className="px-5 py-2.5 bg-white text-ink rounded-lg text-[12px] font-semibold hover:bg-white/90 transition-colors active:scale-[0.97]">
+                  <button className="px-5 py-2.5 bg-white text-ink rounded-lg text-[12px] font-semibold hover:bg-white/90 transition-colors active:scale-[0.98]">
                     DDS 리포트 생성
                   </button>
                 </div>

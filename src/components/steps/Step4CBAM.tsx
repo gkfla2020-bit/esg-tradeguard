@@ -296,7 +296,7 @@ export default function Step4CBAM({ skipLoading = false }: { skipLoading?: boole
                     <div className="flex items-center gap-2">
                       <input type="number" step="0.01" value={tamperValue} onChange={e => { setTamperValue(e.target.value); setTamperResult(null) }}
                         className="w-24 px-3 py-2 border border-border rounded-lg text-[12px] font-mono focus:outline-none focus:ring-2 focus:ring-ink/10" />
-                      <button onClick={handleTamper} className="px-4 py-2 text-[11px] font-semibold rounded-lg bg-red-600 text-white hover:bg-red-700 transition-all active:scale-[0.97]">
+                      <button onClick={handleTamper} className="px-4 py-2 text-[11px] font-semibold rounded-lg bg-red-600 text-white hover:bg-red-700 transition-all active:scale-[0.98]">
                         변조 검증
                       </button>
                       {tamperResult && (
@@ -427,7 +427,7 @@ export default function Step4CBAM({ skipLoading = false }: { skipLoading?: boole
                     </div>
                     <div className="mt-3 pt-3 border-t border-border flex items-center justify-between">
                       <span className="text-[10px] text-muted3">시뮬레이션 결과를 CBAM 신고서에 첨부할 수 있습니다.</span>
-                      <button className="px-4 py-1.5 rounded-md border border-border text-[11px] font-medium text-muted2 hover:bg-surface2 hover:text-ink transition-colors active:scale-[0.97]">
+                      <button className="px-4 py-1.5 rounded-md border border-border text-[11px] font-medium text-muted2 hover:bg-surface2 hover:text-ink transition-colors active:scale-[0.98]">
                         CSV 내보내기
                       </button>
                     </div>

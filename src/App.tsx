@@ -84,7 +84,7 @@ export default function App() {
           {/* CTA */}
           <button
             onClick={() => setStarted(true)}
-            className="w-fit px-7 py-3 bg-ink text-white rounded-lg text-[14px] font-semibold hover:bg-ink2 transition-all active:scale-[0.97]"
+            className="w-fit px-7 py-3 bg-ink text-white rounded-lg text-[14px] font-semibold hover:bg-ink2 transition-all active:scale-[0.98]"
           >
             새 케이스 시작
           </button>
@@ -187,6 +187,7 @@ export default function App() {
                 <div className="flex-1 min-w-0">
                   <span className="block truncate">{s.label}</span>
                   {active && <span className="font-mono text-[9px] text-muted3">{s.mono}</span>}
+                  {done && <span className="font-mono text-[9px] text-emerald-600">done</span>}
                 </div>
                 {active && <ChevronRight size={12} className="text-muted3" />}
               </button>

@@ -149,7 +149,7 @@ export default function Step3Regulation({ skipLoading = false }: { skipLoading?:
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.3 }}
                     onClick={() => setFilter(isActive ? 'all' : statusKey)}
-                    className={`border-2 ${s.border} ${s.bg} rounded-card px-4 py-3 cursor-pointer transition-all active:scale-[0.97] ${isActive ? 'ring-2 ring-offset-1 ring-ink/20' : 'hover:shadow-sm'}`}
+                    className={`border-2 ${s.border} ${s.bg} rounded-card px-4 py-3 cursor-pointer transition-all active:scale-[0.98] ${isActive ? 'ring-2 ring-offset-1 ring-ink/20' : 'hover:shadow-sm'}`}
                   >
                     <div className="flex items-center gap-2 mb-1">
                       <s.icon size={14} className={s.text} />

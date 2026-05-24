@@ -197,7 +197,7 @@ export default function Step1Intake({ skipLoading = false }: { skipLoading?: boo
                         <X size={14} />
                       </button>
                     ) : (
-                      <label className="px-3 py-1.5 rounded-md bg-surface2 text-[11px] font-medium text-muted2 hover:bg-border hover:text-ink cursor-pointer transition-colors active:scale-[0.97]">
+                      <label className="px-3 py-1.5 rounded-md bg-surface2 text-[11px] font-medium text-muted2 hover:bg-border hover:text-ink cursor-pointer transition-colors active:scale-[0.98]">
                         선택
                         <input type="file" accept={slot.accept} className="hidden" onChange={e => {
                           const f = e.target.files?.[0]
@@ -217,7 +217,7 @@ export default function Step1Intake({ skipLoading = false }: { skipLoading?: boo
                     {allRequiredDone && <span className="ml-2 text-emerald-600 font-medium">· 필수 서류 완비</span>}
                   </div>
                   {uploadedCount === 0 && (
-                    <button onClick={loadDemoFiles} className="px-3 py-1.5 rounded-md border border-border text-[11px] font-medium text-muted2 hover:bg-surface2 transition-colors active:scale-[0.97]">
+                    <button onClick={loadDemoFiles} className="px-3 py-1.5 rounded-md border border-border text-[11px] font-medium text-muted2 hover:bg-surface2 transition-colors active:scale-[0.98]">
                       샘플 케이스 불러오기
                     </button>
                   )}
@@ -225,7 +225,7 @@ export default function Step1Intake({ skipLoading = false }: { skipLoading?: boo
                 <button
                   onClick={startValidation}
                   disabled={!allRequiredDone}
-                  className={`px-5 py-2.5 rounded-lg text-[13px] font-semibold transition-all active:scale-[0.97] ${
+                  className={`px-5 py-2.5 rounded-lg text-[13px] font-semibold transition-all active:scale-[0.98] ${
                     allRequiredDone
                       ? 'bg-ink text-white hover:bg-ink2 shadow-sm'
                       : 'bg-surface2 text-muted3 cursor-not-allowed'
