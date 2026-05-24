@@ -45,6 +45,7 @@ export default function App() {
     setPrevDirection(targetStep > step ? 'forward' : 'back')
     completedSteps.current.add(step)
     setStep(targetStep)
+    document.getElementById('main-scroll')?.scrollTo({ top: 0, behavior: 'instant' })
   }
 
   // Keyboard shortcuts

@@ -282,13 +282,13 @@ export default function Step5Satellite({ skipLoading = false }: { skipLoading?: 
                 {/* Images with transition */}
                 <div className="grid grid-cols-2" style={{ height: 420 }}>
                   {/* Left: satellite */}
-                  <div className="relative border-r border-border bg-neutral-900 overflow-hidden">
+                  <div className="relative border-r border-border bg-neutral-900 overflow-hidden group/img">
                     <AnimatePresence mode="wait">
                       <motion.img
                         key={`orig-${year}`}
                         src={`/satellite/orig_${year}.png`}
                         alt={`Satellite ${year}`}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover transition-[filter] duration-300 group-hover/img:brightness-110"
                         initial={{ opacity: 0, scale: 1.02 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.98 }}
@@ -312,13 +312,13 @@ export default function Step5Satellite({ skipLoading = false }: { skipLoading?: 
                   </div>
 
                   {/* Right: analysis result */}
-                  <div className="relative bg-neutral-900 overflow-hidden">
+                  <div className="relative bg-neutral-900 overflow-hidden group/img2">
                     <AnimatePresence mode="wait">
                       <motion.img
                         key={`result-${year}-${view}`}
                         src={view === 'seg' ? `/satellite/seg_${year}.png` : `/satellite/overlay_${year}.png`}
                         alt={`${view} ${year}`}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover transition-[filter] duration-300 group-hover/img2:brightness-110"
                         initial={{ opacity: 0, scale: 1.02, filter: 'brightness(1.2)' }}
                         animate={{ opacity: 1, scale: 1, filter: 'brightness(1)' }}
                         exit={{ opacity: 0, scale: 0.98 }}
