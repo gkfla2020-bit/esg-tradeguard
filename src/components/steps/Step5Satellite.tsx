@@ -106,7 +106,7 @@ export default function Step5Satellite({ skipLoading = false }: { skipLoading?: 
   return (
     <section>
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
-        <div className="mb-6">
+        <div className="mb-4">
           <h2 className="font-heading text-[22px] font-bold text-ink tracking-tight">위성 환경 검증</h2>
           <p className="text-[13px] text-muted2 mt-1">
             위성 사진으로 원산지의 산림이 실제로 파괴되었는지 AI가 판별합니다. <span title="EUDR: 2020-12-31 이후 산림전용된 토지의 원자재는 EU 수입 금지" className="underline decoration-dotted cursor-help">2020년 이후 산림이 줄었으면</span> EU 수출이 불가능합니다.
