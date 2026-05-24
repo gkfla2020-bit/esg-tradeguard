@@ -401,34 +401,29 @@ export default function Step4CBAM({ skipLoading = false }: { skipLoading?: boole
 
                   {/* Comparison */}
                   <div className="bg-surface rounded-card border border-border p-5">
-                    <div className="text-[13px] font-bold text-ink mb-4">2034년 기준 — 기본값 vs 실측 비용 비교</div>
-                    <div className="flex items-center justify-between">
+                    <div className="text-[13px] font-semibold text-ink mb-3">2034년 기준 비용 비교</div>
+                    <div className="flex items-end gap-6">
                       <div>
-                        <div className="text-[11px] text-muted3 mb-0.5">기본값 적용</div>
-                        <div className="font-mono text-[18px] font-bold text-ink">{costData[costData.length - 1]['EU 기본값'].toFixed(1)}억 원</div>
+                        <div className="text-[12px] text-muted3 mb-1">기본값 적용</div>
+                        <div className="font-mono text-[20px] font-bold text-ink">{costData[costData.length - 1]['EU 기본값'].toFixed(1)}<span className="text-[13px] font-normal text-muted2 ml-0.5">억</span></div>
                       </div>
-                      <div className="text-muted3 text-[14px]">→</div>
+                      <span className="text-muted3 text-[13px] pb-1">→</span>
                       <div>
-                        <div className="text-[11px] text-muted3 mb-0.5">실측 제출</div>
-                        <div className="font-mono text-[18px] font-bold text-ink">{costData[costData.length - 1]['실측 제출'].toFixed(1)}억 원</div>
+                        <div className="text-[12px] text-muted3 mb-1">실측 제출</div>
+                        <div className="font-mono text-[20px] font-bold text-ink">{costData[costData.length - 1]['실측 제출'].toFixed(1)}<span className="text-[13px] font-normal text-muted2 ml-0.5">억</span></div>
                       </div>
-                      <div className="text-muted3 text-[14px]">=</div>
+                      <span className="text-muted3 text-[13px] pb-1">=</span>
                       <div>
-                        <div className="text-[11px] text-muted3 mb-0.5">절감액</div>
-                        <div className="font-mono text-[18px] font-bold text-ink">{finalSaving}억 원</div>
+                        <div className="text-[12px] text-muted3 mb-1">연간 절감</div>
+                        <div className="font-mono text-[20px] font-bold text-ink">{finalSaving}<span className="text-[13px] font-normal text-muted2 ml-0.5">억 원</span></div>
                       </div>
                     </div>
-                    {/* 비즈니스 권고사항 */}
-                    <div className="mt-4 pt-4 border-t border-border">
-                      <div className="text-[11px] font-semibold text-ink mb-2">권고사항</div>
-                      <div className="space-y-1.5 text-[11px] text-muted2">
-                        <div className="flex gap-2"><span className="text-emerald-500">→</span>실측 데이터를 제출하면 EU 기본값 대비 <span className="font-semibold text-ink">연 {finalSaving}억 원</span> 절감 가능합니다.</div>
-                        <div className="flex gap-2"><span className="text-emerald-500">→</span>배출계수를 0.4t 추가 감축(바이오매스 전환) 시 절감액이 <span className="font-semibold text-ink">{(+finalSaving * 1.3).toFixed(1)}억 원</span>으로 증가합니다.</div>
-                        <div className="flex gap-2"><span className="text-emerald-500">→</span>2034년 무상할당 완전 폐지 전까지 감축 투자 회수 가능 기간: 약 2.5년.</div>
-                      </div>
+                    <div className="mt-4 pt-3 border-t border-border space-y-2 text-[12px] text-muted2">
+                      <div>실측 데이터 제출 시 EU 기본값 대비 연 <span className="font-semibold text-ink">{finalSaving}억 원</span> 절감.</div>
+                      <div>배출계수 0.4t 추가 감축(바이오매스 전환) 시 <span className="font-semibold text-ink">{(+finalSaving * 1.3).toFixed(1)}억 원</span>까지 가능.</div>
                     </div>
                     <div className="mt-3 pt-3 border-t border-border flex items-center justify-between">
-                      <span className="text-[10px] text-muted3">시뮬레이션 결과를 CBAM 신고서에 첨부할 수 있습니다.</span>
+                      <span className="text-[11px] text-muted3">시뮬레이션 결과를 CBAM 신고서에 첨부 가능</span>
                       <button className="px-4 py-1.5 rounded-md border border-border text-[11px] font-medium text-muted2 hover:bg-surface2 hover:text-ink transition-colors active:scale-[0.98]">
                         CSV 내보내기
                       </button>
