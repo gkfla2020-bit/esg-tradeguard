@@ -180,16 +180,16 @@ export default function Step4CBAM({ skipLoading = false }: { skipLoading?: boole
                         initial={{ scale: 0.5, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ type: 'spring', stiffness: 200, delay: 0.1 }}
-                        className="font-mono text-[48px] font-black text-emerald-600 leading-none"
+                        className="font-mono text-[48px] font-black text-ink leading-none"
                       >{score}</motion.div>
                       <div className="text-[10px] text-muted3 mt-1">/100</div>
-                      <div className="text-[11px] font-semibold text-emerald-600 mt-2">✓ High Quality</div>
+                      <div className="text-[11px] font-semibold text-ink mt-2">✓ High Quality</div>
                     </div>
                     {/* Checks */}
                     <div className="bg-surface rounded-card border border-border p-4 space-y-2">
                       {scoreChecks.slice(0, visibleChecks).map((c, i) => (
                         <motion.div key={i} initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.2 }} className="flex items-start gap-2 text-[12px]">
-                          {c.pass ? <CheckCircle2 size={14} className="text-emerald-500 shrink-0 mt-0.5" /> : <XCircle size={14} className="text-amber-500 shrink-0 mt-0.5" />}
+                          {c.pass ? <CheckCircle2 size={14} className="text-muted2 shrink-0 mt-0.5" /> : <XCircle size={14} className="text-amber-500 shrink-0 mt-0.5" />}
                           <span className="text-muted2">{c.msg}</span>
                         </motion.div>
                       ))}
@@ -200,7 +200,7 @@ export default function Step4CBAM({ skipLoading = false }: { skipLoading?: boole
                     <div className="flex items-center justify-between mb-2">
                       <div className="text-[12px] font-semibold text-ink">업종 배출계수 정규분포</div>
                       <div className="flex items-center gap-4 text-[10px] text-muted3">
-                        <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block" /> 본건</span>
+                        <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-surface0 inline-block" /> 본건</span>
                         <span className="flex items-center gap-1.5"><span className="w-4 h-0 inline-block border-t-[2px] border-dashed border-red-500" /> EU 기본값</span>
                         <span className="flex items-center gap-1.5"><span className="w-4 h-0 inline-block border-t-[2px] border-dashed border-blue-500" /> 벤치마크</span>
                       </div>
@@ -238,7 +238,7 @@ export default function Step4CBAM({ skipLoading = false }: { skipLoading?: boole
                     <div className="mt-3 pt-3 border-t border-border flex items-center justify-between">
                       <div className="text-[11px] text-muted2">
                         본 건의 배출계수 <span className="font-mono font-bold text-ink">{EF} tCO₂/t</span>은
-                        업종 평균과 동일하며, EU 기본값({SECTOR.euDefault})보다 <span className="font-semibold text-emerald-700">{((1 - EF/SECTOR.euDefault) * 100).toFixed(0)}% 낮습니다</span>.
+                        업종 평균과 동일하며, EU 기본값({SECTOR.euDefault})보다 <span className="font-semibold text-ink">{((1 - EF/SECTOR.euDefault) * 100).toFixed(0)}% 낮습니다</span>.
                         실측 제출이 유리합니다.
                       </div>
                       <div className="text-[9px] text-muted3 font-mono shrink-0 ml-4">n=2,847 · ISCC</div>
@@ -266,15 +266,15 @@ export default function Step4CBAM({ skipLoading = false }: { skipLoading?: boole
                       <div className="text-[10px] font-bold text-muted2">Block #1041</div>
                       <div className="font-mono text-[8px] text-muted3">0x7a3f...e2b1</div>
                     </div>
-                    <ArrowRight size={14} className="text-emerald-500" />
+                    <ArrowRight size={14} className="text-muted2" />
                     <motion.div
                       initial={{ scale: 0.9, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
                       transition={{ type: 'spring', stiffness: 150 }}
-                      className="bg-emerald-50 border-2 border-emerald-400 rounded-lg px-4 py-2.5 text-center"
+                      className="bg-surface border-2 border-ink rounded-lg px-4 py-2.5 text-center"
                     >
-                      <div className="text-[10px] font-bold text-emerald-800">Block #1042 (NEW)</div>
-                      <div className="font-mono text-[8px] text-emerald-700">0x{blockHash.slice(0, 8)}...{blockHash.slice(-4)}</div>
+                      <div className="text-[10px] font-bold text-ink">Block #1042 (NEW)</div>
+                      <div className="font-mono text-[8px] text-ink">0x{blockHash.slice(0, 8)}...{blockHash.slice(-4)}</div>
                     </motion.div>
                     <ArrowRight size={14} className="text-muted3" />
                     <div className="bg-surface border border-dashed border-border rounded-lg px-4 py-2.5 text-center">
@@ -286,7 +286,7 @@ export default function Step4CBAM({ skipLoading = false }: { skipLoading?: boole
                   {/* Record content */}
                   <div className="bg-surface rounded-card border border-border p-4 font-mono text-[11px] leading-relaxed mb-4">
                     <div className="text-[11px] font-sans font-semibold text-ink mb-2 flex items-center gap-1.5"><Lock size={12} /> 온체인 기록 내용</div>
-                    <div className="flex items-center gap-2"><span className="text-muted3">txHash:</span> <span className="text-emerald-700 truncate max-w-[360px]">0x{blockHash}</span><button onClick={() => navigator.clipboard.writeText('0x' + blockHash)} className="px-1.5 py-0.5 text-[8px] bg-surface2 border border-border rounded hover:bg-border transition-colors" title="복사">copy</button></div>
+                    <div className="flex items-center gap-2"><span className="text-muted3">txHash:</span> <span className="text-ink truncate max-w-[360px]">0x{blockHash}</span><button onClick={() => navigator.clipboard.writeText('0x' + blockHash)} className="px-1.5 py-0.5 text-[8px] bg-surface2 border border-border rounded hover:bg-border transition-colors" title="복사">copy</button></div>
                     <div><span className="text-muted3">timestamp:</span> 2026-05-23T14:30:00Z</div>
                     <div><span className="text-muted3">company:</span> UniHana Trading GmbH</div>
                     <div><span className="text-muted3">product:</span> Palm Oil CPO (HS 1511.10)</div>
@@ -306,7 +306,7 @@ export default function Step4CBAM({ skipLoading = false }: { skipLoading?: boole
                         변조 검증
                       </button>
                       {tamperResult && (
-                        <span className={`text-[11px] font-semibold flex items-center gap-1 ${tamperResult.match ? 'text-emerald-600' : 'text-red-600'}`}>
+                        <span className={`text-[11px] font-semibold flex items-center gap-1 ${tamperResult.match ? 'text-ink' : 'text-red-600'}`}>
                           {tamperResult.match ? <CheckCircle2 size={13} /> : <AlertCircle size={13} />}
                           {tamperResult.msg}
                         </span>
@@ -328,7 +328,7 @@ export default function Step4CBAM({ skipLoading = false }: { skipLoading?: boole
                     <span className="text-[14px] font-bold text-ink">CBAM 비용 시뮬레이션</span>
                     <span className="text-[12px] text-muted2">2026–2034 연도별 비용 경로</span>
                     {+finalSaving > 0 && (
-                      <span className="ml-auto text-[12px] font-semibold text-emerald-600">실측 제출 시 2034년 연 {finalSaving}억 원 절감</span>
+                      <span className="ml-auto text-[12px] font-semibold text-ink">실측 제출 시 2034년 연 {finalSaving}억 원 절감</span>
                     )}
                   </div>
 
