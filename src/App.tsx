@@ -180,8 +180,8 @@ export default function App() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <span className="block truncate">{s.label}</span>
-                  {active && <span className="text-[9px] text-muted3">{s.desc}</span>}
-                  {done && <span className="font-mono text-[9px] text-emerald-600">done</span>}
+                  {active && <span className="text-[10px] text-muted3">{s.desc}</span>}
+                  {done && <span className="font-mono text-[10px] text-muted2">done</span>}
                 </div>
                 {active && <ChevronRight size={12} className="text-muted3" />}
               </button>
