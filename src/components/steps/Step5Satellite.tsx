@@ -172,18 +172,13 @@ export default function Step5Satellite({ skipLoading = false }: { skipLoading?: 
               transition={{ duration: 0.2 }}
               className="border border-border rounded-card bg-white p-6"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <Loader2 size={16} className="text-ink animate-spin" />
-                <span className="text-[13px] font-semibold text-ink">분석 중</span>
-                <Loader2 size={13} className="text-muted3 animate-spin ml-auto" />
-              </div>
-              <div className="w-full h-2 bg-surface2 rounded-full overflow-hidden">
-                <div className="h-full bg-ink rounded-full transition-all duration-100" style={{ width: `${analysisProgress}%` }} />
-              </div>
-              <div className="mt-3 font-mono text-[10px] text-muted3">
-                {analysisProgress < 30 ? 'U-Net Segmentation 추론...' :
-                 analysisProgress < 60 ? 'Grad-CAM saliency map 생성...' :
-                 analysisProgress < 85 ? 'NDVI 시계열 계산...' : '결과 렌더링...'}
+              <div className="flex items-center gap-2">
+                <Loader2 size={14} className="text-muted3 animate-spin" />
+                <span className="text-[12px] text-muted2">
+                  {analysisProgress < 30 ? 'U-Net Segmentation 추론...' :
+                   analysisProgress < 60 ? 'Grad-CAM saliency map 생성...' :
+                   analysisProgress < 85 ? 'NDVI 시계열 계산...' : '결과 렌더링...'}
+                </span>
               </div>
             </motion.div>
           )}
