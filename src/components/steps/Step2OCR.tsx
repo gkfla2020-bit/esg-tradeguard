@@ -131,9 +131,9 @@ export default function Step2OCR({ skipLoading = false }: { skipLoading?: boolea
             >
               {/* Summary bar */}
               <div className="flex items-center gap-3 mb-4 flex-wrap">
-                <div className="flex items-center gap-2 px-3 py-2 bg-emerald-50 border border-emerald-200 rounded-lg">
-                  <CheckCircle2 size={14} className="text-emerald-600" />
-                  <span className="text-[12px] font-medium text-emerald-800">{RESULTS.length}개 필드 추출</span>
+                <div className="flex items-center gap-2 px-3 py-2 bg-surface border border-border rounded-lg">
+                  <CheckCircle2 size={14} className="text-ink" />
+                  <span className="text-[12px] font-medium text-ink">{RESULTS.length}개 필드 추출</span>
                 </div>
                 <div className="flex items-center gap-2 px-3 py-2 bg-surface border border-border rounded-lg">
                   <span className="text-[11px] text-muted2">평균 정확도</span>
@@ -168,7 +168,7 @@ export default function Step2OCR({ skipLoading = false }: { skipLoading?: boolea
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.25 }}
                       className={`grid grid-cols-[140px_1fr_100px_120px_60px] gap-0 px-5 py-3 items-center transition-colors ${
-                        item.confidence < 93 ? 'bg-amber-50/40' : 'hover:bg-surface/50'
+                        item.confidence < 93 ? 'bg-surface' : 'hover:bg-surface/50'
                       }`}
                     >
                       <span className="font-mono text-[11px] text-muted2">{item.field}</span>
@@ -176,9 +176,9 @@ export default function Step2OCR({ skipLoading = false }: { skipLoading?: boolea
                       <ConfidenceBar value={item.confidence} />
                       <span className="font-mono text-[10px] text-muted3">{item.source}</span>
                       {item.confidence < 93 ? (
-                        <button className="px-2 py-0.5 rounded text-[9px] font-semibold bg-amber-100 text-amber-700 hover:bg-amber-200 transition-colors">Review</button>
+                        <button className="px-2 py-0.5 rounded text-[9px] font-semibold bg-surface2 text-muted2 hover:bg-border transition-colors">Review</button>
                       ) : (
-                        <span className="text-[9px] text-emerald-600 font-mono">auto</span>
+                        <span className="text-[9px] text-muted3 font-mono">auto</span>
                       )}
                     </motion.div>
                   ))}
