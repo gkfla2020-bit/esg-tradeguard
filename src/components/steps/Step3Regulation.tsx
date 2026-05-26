@@ -222,7 +222,7 @@ export default function Step3Regulation({ skipLoading = false, satelliteComplete
               <div className="mb-8">
                 <div className="text-[11px] font-mono text-muted3 mb-2">1.0 EXECUTIVE SUMMARY</div>
                 <div className="border border-border rounded-lg p-4 bg-white">
-                  <div className="text-[13px] text-ink leading-relaxed mb-3">
+                  <div className="text-[13px] text-ink leading-[1.7] mb-3">
                     본 건은 EUDR, CBAM, CSDDD 3개 규제 {RULES.length}개 조항에 대해 검증을 수행하였습니다.
                     서류 기반 <span className="font-semibold">{counts.pass}개 조항 적합</span>, 위성 검증 관련 <span className="font-semibold">{counts.warn}개 조항 주의</span> 판정을 받았습니다.
                   </div>
@@ -287,7 +287,7 @@ export default function Step3Regulation({ skipLoading = false, satelliteComplete
                       ))}
                     </div>
                     <div className="bg-surface rounded-lg p-3">
-                      <p className="text-[12px] text-ink leading-[1.6]"><span className="font-semibold">판정:</span> EUDR cutoff date(2020-12-31) 이후 산림 면적 31%p 감소 확인. CNN 분석에서 팜유 플랜테이션 확장에 의한 산림 전환이 주요 원인으로 식별됨. <span className="font-semibold">EUDR Art.3 및 Art.10 위반 의심.</span></p>
+                      <p className="text-[12px] text-ink leading-[1.7]"><span className="font-semibold">판정:</span> EUDR cutoff date(2020-12-31) 이후 산림 면적 31%p 감소 확인. CNN 분석에서 팜유 플랜테이션 확장에 의한 산림 전환이 주요 원인으로 식별됨. <span className="font-semibold">EUDR Art.3 및 Art.10 위반 의심.</span></p>
                     </div>
                   </div>
                 </div>
@@ -350,7 +350,7 @@ export default function Step3Regulation({ skipLoading = false, satelliteComplete
                   {/* Summary */}
                   <div className="p-4">
                     <div className="bg-surface rounded-lg p-3">
-                      <p className="text-[12px] text-ink leading-[1.6]"><span className="font-semibold">결론:</span> 실측 데이터 제출이 EU 기본값 대비 연간 <span className="font-semibold">7.3억 원</span> 절감 효과. 배출계수 3.2 tCO₂/t은 업종 평균 내 정상 범위(z=0.0). 추가 감축 시(바이오매스 보일러 -0.4t) 절감액 <span className="font-semibold">9.5억 원</span>까지 확대 가능.</p>
+                      <p className="text-[12px] text-ink leading-[1.7]"><span className="font-semibold">결론:</span> 실측 데이터 제출이 EU 기본값 대비 연간 <span className="font-semibold">7.3억 원</span> 절감 효과. 배출계수 3.2 tCO₂/t은 업종 평균 내 정상 범위(z=0.0). 추가 감축 시(바이오매스 보일러 -0.4t) 절감액 <span className="font-semibold">9.5억 원</span>까지 확대 가능.</p>
                     </div>
                   </div>
                 </div>
@@ -385,7 +385,7 @@ export default function Step3Regulation({ skipLoading = false, satelliteComplete
                       ))}
                     </tbody>
                   </table>
-                  <p className="text-[12px] text-muted2 leading-[1.6] mt-3">전체 6건의 서류가 제출되었으며, OCR 자동 추출(평균 정확도 96.5%)과 문서 간 교차 검증(Invoice↔B/L, Invoice↔Origin Cert, B/L↔DDS 전체 일치)을 통과하였습니다. 수동 검증이 권장되는 항목(confidence {'<'} 93%)은 Harvest Period(92.3%) 및 ETA EU Port(93.7%)이며, 핵심 판정에 영향을 미치지 않습니다.</p>
+                  <p className="text-[12px] text-muted2 leading-[1.7] mt-3">전체 6건의 서류가 제출되었으며, OCR 자동 추출(평균 정확도 96.5%)과 문서 간 교차 검증(Invoice↔B/L, Invoice↔Origin Cert, B/L↔DDS 전체 일치)을 통과하였습니다. 수동 검증이 권장되는 항목(confidence {'<'} 93%)은 Harvest Period(92.3%) 및 ETA EU Port(93.7%)이며, 핵심 판정에 영향을 미치지 않습니다.</p>
                 </div>
               </div>
 
@@ -413,11 +413,11 @@ export default function Step3Regulation({ skipLoading = false, satelliteComplete
                           <tbody>
                             <tr className="border-t border-border">
                               <td className="py-2 pr-4 text-muted3 font-medium w-[100px] align-top">검증 방법</td>
-                              <td className="py-2 text-muted2 leading-[1.6]">{rule.method}</td>
+                              <td className="py-2 text-muted2 leading-[1.7]">{rule.method}</td>
                             </tr>
                             <tr className="border-t border-border">
                               <td className="py-2 pr-4 text-muted3 font-medium align-top">판정 결과</td>
-                              <td className="py-2 text-ink leading-[1.6] font-medium">{rule.finding}</td>
+                              <td className="py-2 text-ink leading-[1.7] font-medium">{rule.finding}</td>
                             </tr>
                             <tr className="border-t border-border">
                               <td className="py-2 pr-4 text-muted3 font-medium align-top">근거 자료</td>
@@ -429,7 +429,7 @@ export default function Step3Regulation({ skipLoading = false, satelliteComplete
                         {/* Risk + Penalty box */}
                         <div className="bg-surface rounded-lg p-3 mb-3">
                           <div className="text-[11px] font-semibold text-ink mb-1">위험 평가</div>
-                          <p className="text-[12px] text-muted2 leading-[1.6] mb-2">{rule.risk}</p>
+                          <p className="text-[12px] text-muted2 leading-[1.7] mb-2">{rule.risk}</p>
                           <div className="flex items-center gap-2 text-[11px]">
                             <span className="text-muted3">제재:</span>
                             <span className="font-semibold text-ink">{rule.penalty}</span>
@@ -439,7 +439,7 @@ export default function Step3Regulation({ skipLoading = false, satelliteComplete
                         {/* Recommendation */}
                         <div className="border-t border-border pt-3">
                           <div className="text-[11px] font-semibold text-ink mb-1">권고사항</div>
-                          <p className="text-[12px] text-muted2 leading-[1.6]">{rule.recommendation}</p>
+                          <p className="text-[12px] text-muted2 leading-[1.7]">{rule.recommendation}</p>
                         </div>
                       </div>
                     </div>
@@ -450,7 +450,7 @@ export default function Step3Regulation({ skipLoading = false, satelliteComplete
               {/* 3. Risk Assessment */}
               <div className="mb-8">
                 <div className="text-[11px] font-mono text-muted3 mb-3">6.0 RISK ASSESSMENT</div>
-                <div className="border border-border rounded-lg p-4 bg-white text-[13px] text-ink leading-[1.8]">
+                <div className="border border-border rounded-lg p-4 bg-white text-[13px] text-ink leading-[1.7]">
                   <p className="mb-3">본 건(PT. Sawit Kalimantan Utama, CPO 2,400MT, HS 1511.10.00)에 대한 종합 위험 평가 결과는 다음과 같습니다.</p>
                   <p className="mb-3"><span className="font-semibold">EUDR 산림전용 규제:</span> 서류 기반 검증(Art.4 DDS 제출, Art.9 GPS polygon, Art.12 합법성)은 적합으로 판정되었습니다. 다만 Art.3(산림전용 금지 의무) 및 Art.10(Cutoff date 2020-12-31 이후 산림전용 없음) 항목은 Sentinel-2 위성 시계열 분석(2019~2024)에서 산림 면적 78% → 47%로 31%p 감소가 감지되어 주의(WARNING) 판정을 받았습니다. 이 상태로 EU 수출 시 EUDR Art.3 위반으로 통관 거부 및 매출액 4% 과징금이 부과될 수 있습니다.</p>
                   <p className="mb-3"><span className="font-semibold">CBAM 탄소국경조정:</span> 내재 탄소배출량 3.2 tCO₂/t으로 보고 포맷 적합(Art.35), 간접 배출 0.35 tCO₂/t 포함 확인(Annex III). EU 기본값(4.5 tCO₂/t) 대비 29% 낮아 실측 데이터 제출이 유리하며, 2034년 기준 연간 약 7.3억 원 절감 효과가 예상됩니다.</p>
@@ -461,7 +461,7 @@ export default function Step3Regulation({ skipLoading = false, satelliteComplete
               {/* 4. Recommendations */}
               <div className="mb-8">
                 <div className="text-[11px] font-mono text-muted3 mb-3">7.0 RECOMMENDATIONS</div>
-                <div className="border border-border rounded-lg p-4 bg-white text-[13px] text-ink leading-[1.8]">
+                <div className="border border-border rounded-lg p-4 bg-white text-[13px] text-ink leading-[1.7]">
                   <p className="mb-2">1. EUDR Art.3/Art.10 관련: 대체 공급원 확보 또는 원산지 추가 현장 실사를 권장합니다. 현 공급원의 산림 감소 추세가 지속될 경우 2025년 이후 EU 시장 진입이 차단될 수 있습니다.</p>
                   <p className="mb-2">2. CBAM 관련: 현재 실측 배출계수(3.2 tCO₂/t)를 유지하되, 바이오매스 보일러 전환(−0.4t) 및 메탄 포집(−0.3t) 투자를 통해 추가 절감이 가능합니다.</p>
                   <p>3. 본 보고서를 EU 수입국 관할 당국에 DDS(Due Diligence Statement)로 제출할 수 있습니다. 위성 검증 결과가 업데이트되면 보고서가 자동 갱신됩니다.</p>
@@ -471,7 +471,7 @@ export default function Step3Regulation({ skipLoading = false, satelliteComplete
               {/* 5. Conclusion */}
               <div className="mb-6">
                 <div className="text-[11px] font-mono text-muted3 mb-3">8.0 CONCLUSION</div>
-                <div className="border border-border rounded-lg p-4 bg-white text-[13px] text-ink leading-[1.8]">
+                <div className="border border-border rounded-lg p-4 bg-white text-[13px] text-ink leading-[1.7]">
                   본 Due Diligence 검증 결과, 총 {RULES.length}개 규제 조항 중 {counts.pass}개 조항이 적합(Compliant), {counts.warn}개 조항이 주의(Attention Required) 판정을 받았습니다. 주의 판정 항목은 EUDR 산림전용 관련 조항으로, 위성 기반 CNN Segmentation 및 NDVI 시계열 분석에서 유의미한 산림 감소가 감지된 데 기인합니다. 해당 항목의 최종 판정을 위해 추가 현장 실사 또는 대체 공급원 확보를 권장하며, 이를 충족할 경우 전체 조항 적합 판정이 가능합니다.
                 </div>
               </div>

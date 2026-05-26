@@ -227,7 +227,7 @@ export default function App() {
           </div>
           <div className="flex items-center gap-1.5 text-[9px] text-muted3 font-mono">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-            <span>Synced {clock.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' })}</span>
+            <span>{clock.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' })}</span>
           </div>
         </div>
       </aside>
