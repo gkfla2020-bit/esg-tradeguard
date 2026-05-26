@@ -87,14 +87,14 @@ export default function App() {
             </p>
 
             {/* Pipeline steps */}
-            <div className="flex items-center mb-10">
+            <div className="flex items-center mb-8">
               {['서류 접수', 'OCR 추출', 'CBAM 산정', '위성 검증', '통합 보고서'].map((label, i) => (
                 <div key={i} className="flex items-center">
                   <div className="flex flex-col items-center">
                     <div className="w-7 h-7 rounded-full border-2 border-ink flex items-center justify-center font-mono text-[10px] font-bold text-ink">{i + 1}</div>
                     <span className="text-[10px] text-muted2 mt-1.5 whitespace-nowrap">{label}</span>
                   </div>
-                  {i < 4 && <div className="w-8 h-[2px] bg-border mx-1 -mt-4" />}
+                  {i < 4 && <div className="w-10 h-[1px] bg-border2 mx-1.5 -mt-4" />}
                 </div>
               ))}
             </div>
