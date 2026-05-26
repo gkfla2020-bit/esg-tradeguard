@@ -151,7 +151,7 @@ export default function App() {
             <div className="flex gap-1">
               {STEPS.map(s => (
                 <div key={s.id} className={`flex-1 h-1.5 rounded-full ${
-                  s.id < step ? 'bg-emerald-500' : s.id === step ? 'bg-ink' : 'bg-surface2'
+                  s.id < step ? 'bg-ink' : s.id === step ? 'bg-ink' : 'bg-surface2'
                 }`} />
               ))}
             </div>
@@ -174,7 +174,7 @@ export default function App() {
                 }`}>
                 {active && <span className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-[60%] rounded-r-full bg-ink" />}
                 <div className={`w-[24px] h-[24px] rounded-md flex items-center justify-center shrink-0 transition-all duration-200 ${
-                  done ? 'bg-emerald-500 text-white group-hover:scale-110' : active ? 'bg-ink text-white' : 'bg-surface2 text-muted3 border border-border group-hover:border-border2'
+                  done ? 'bg-ink text-white' : active ? 'bg-ink text-white' : 'bg-surface2 text-muted3 border border-border group-hover:border-border2'
                 }`}>
                   {done ? <span className="text-[10px] font-bold">✓</span> : <StepIcon size={12} />}
                 </div>
@@ -226,7 +226,7 @@ export default function App() {
             </div>
           </div>
           <div className="flex items-center gap-1.5 text-[9px] text-muted3 font-mono">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+            <span className="w-1.5 h-1.5 rounded-full bg-ink" />
             <span>{clock.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' })}</span>
           </div>
         </div>
@@ -251,7 +251,7 @@ export default function App() {
               </span>
             </div>
             <div className="flex items-center gap-5 font-mono text-[11px] text-muted2">
-              <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />ECO-{new Date().toISOString().slice(2,10).replace(/-/g,'')}-001</span>
+              <span>ECO-{new Date().toISOString().slice(2,10).replace(/-/g,'')}-001</span>
               <span>Palm Oil · Central Kalimantan → EU</span>
               <span className="px-2 py-0.5 bg-surface2 rounded text-muted3">EUDR 2023/1115</span>
               <span className="text-muted3">{clock.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' })}</span>
