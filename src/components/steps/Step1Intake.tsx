@@ -271,11 +271,11 @@ export default function Step1Intake({ skipLoading = false }: { skipLoading?: boo
               transition={{ duration: 0.3 }}
             >
               {/* Success banner */}
-              <div className="border-2 border-emerald-300 rounded-card p-4 bg-emerald-50 flex items-center gap-3 mb-5">
-                <CheckCircle2 size={22} className="text-emerald-600 shrink-0" />
+              <div className="border border-border rounded-card p-4 bg-white flex items-center gap-3 mb-5">
+                <CheckCircle2 size={18} className="text-ink shrink-0" />
                 <div>
-                  <div className="text-[13px] font-semibold text-emerald-800">서류 검증 완료 · 자동 인식 성공</div>
-                  <div className="text-[11px] text-emerald-700 mt-0.5">기업/품목 자동 분류 완료. 해당 업종 규제 요건이 적용됩니다.</div>
+                  <div className="text-[13px] font-semibold text-ink">서류 검증 완료</div>
+                  <div className="text-[11px] text-muted2 mt-0.5">기업/품목 자동 분류 완료. 해당 업종 규제 요건이 적용됩니다.</div>
                 </div>
               </div>
 
@@ -309,24 +309,18 @@ export default function Step1Intake({ skipLoading = false }: { skipLoading?: boo
 
               {/* Sector-specific requirements */}
               <div className="border border-border rounded-card bg-white p-5 mb-4">
-                <div className="text-[12px] font-semibold text-ink mb-3">Palm Oil 업종 규제 요건 (HS 1511)</div>
+                <div className="text-[12px] font-semibold text-ink mb-3">적용 규제 요건 (HS 1511)</div>
                 <div className="grid grid-cols-3 gap-3">
                   {[
-                    { reg: 'EUDR', items: ['GPS polygon (생산지)', 'DDS 실사보고서', '산림전용 무 증명', '합법성 서류'], color: 'amber' },
-                    { reg: 'CBAM', items: ['배출계수 (tCO₂/t)', 'Scope 1+2 보고서', 'LCA 데이터', '에너지 사용량'], color: 'blue' },
-                    { reg: 'CSDDD', items: ['공급망 인권 실사', '소규모 농가 목록', 'ILO 준수 선언', '환경복원 계획'], color: 'purple' },
+                    { reg: 'EUDR', items: ['GPS polygon (생산지)', 'DDS 실사보고서', '산림전용 무 증명', '합법성 서류'] },
+                    { reg: 'CBAM', items: ['배출계수 (tCO₂/t)', 'Scope 1+2 보고서', 'LCA 데이터', '에너지 사용량'] },
+                    { reg: 'CSDDD', items: ['공급망 인권 실사', '소규모 농가 목록', 'ILO 준수 선언', '환경복원 계획'] },
                   ].map(r => (
-                    <div key={r.reg} className={`rounded-lg border p-3 ${
-                      r.color === 'amber' ? 'border-amber-200 bg-amber-50/50' :
-                      r.color === 'blue' ? 'border-blue-200 bg-blue-50/50' :
-                      'border-purple-200 bg-purple-50/50'
-                    }`}>
-                      <div className={`text-[11px] font-bold mb-2 ${
-                        r.color === 'amber' ? 'text-amber-700' : r.color === 'blue' ? 'text-blue-700' : 'text-purple-700'
-                      }`}>{r.reg}</div>
+                    <div key={r.reg} className="rounded-lg border border-border p-3">
+                      <div className="text-[11px] font-bold mb-2 text-ink">{r.reg}</div>
                       {r.items.map(item => (
                         <div key={item} className="flex items-center gap-1.5 text-[10px] text-muted2 mb-1">
-                          <CheckCircle2 size={10} className="text-emerald-500 shrink-0" />
+                          <span className="w-1 h-1 rounded-full bg-muted3 shrink-0" />
                           {item}
                         </div>
                       ))}

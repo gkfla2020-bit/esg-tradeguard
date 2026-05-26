@@ -144,9 +144,9 @@ export default function Step2OCR({ skipLoading = false }: { skipLoading?: boolea
                   <span className="font-mono text-[12px] font-bold text-emerald-700">{((RESULTS.length - lowConfidence.length) / RESULTS.length * 100).toFixed(0)}%</span>
                 </div>
                 {lowConfidence.length > 0 && (
-                  <div className="flex items-center gap-2 px-3 py-2 bg-amber-50 border border-amber-200 rounded-lg">
-                    <AlertTriangle size={14} className="text-amber-600" />
-                    <span className="text-[11px] text-amber-800">{lowConfidence.length}건 수동 검증 권장</span>
+                  <div className="flex items-center gap-2 px-3 py-2 bg-surface border border-border rounded-lg">
+                    <AlertTriangle size={14} className="text-muted2" />
+                    <span className="text-[11px] text-muted2">{lowConfidence.length}건 수동 검증 권장</span>
                   </div>
                 )}
               </div>
@@ -233,9 +233,9 @@ export default function Step2OCR({ skipLoading = false }: { skipLoading?: boolea
                   <div className="border-t border-border pt-3 mb-3">
                     <div className="text-[11px] text-muted2 mb-2">HS 1511 기준 적용 규제:</div>
                     <div className="flex gap-2">
-                      <span className="px-2.5 py-1 rounded-md text-[11px] font-semibold border border-amber-300 bg-amber-50 text-amber-700">EUDR — 산림전용 검증 필요</span>
-                      <span className="px-2.5 py-1 rounded-md text-[11px] font-semibold border border-blue-300 bg-blue-50 text-blue-700">CBAM — 탄소비용 산정 필요</span>
-                      <span className="px-2.5 py-1 rounded-md text-[11px] font-semibold border border-purple-300 bg-purple-50 text-purple-700">CSDDD — 공급망 실사</span>
+                      <span className="px-2.5 py-1 rounded-md text-[11px] font-medium border border-border text-ink">EUDR</span>
+                      <span className="px-2.5 py-1 rounded-md text-[11px] font-medium border border-border text-ink">CBAM</span>
+                      <span className="px-2.5 py-1 rounded-md text-[11px] font-medium border border-border text-ink">CSDDD</span>
                     </div>
                   </div>
                   <div className="text-[11px] text-muted2">위 정보가 맞으면 다음 단계로 진행하세요. 수정이 필요하면 해당 필드를 클릭하세요.</div>
