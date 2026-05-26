@@ -234,67 +234,125 @@ export default function Step3Regulation({ skipLoading = false, satelliteComplete
                 </div>
               </div>
 
-              {/* 2. Satellite Analysis Summary */}
+              {/* 2. Satellite Analysis */}
               <div className="mb-8">
                 <div className="text-[11px] font-mono text-muted3 mb-3">2.0 SATELLITE ENVIRONMENTAL VERIFICATION</div>
                 <div className="border border-border rounded-lg overflow-hidden bg-white">
-                  <div className="grid grid-cols-2 gap-0">
-                    <div className="p-3 border-r border-border">
-                      <div className="text-[10px] text-muted3 mb-1 font-mono">2019 (Baseline)</div>
-                      <img src="/satellite/orig_2019.png" alt="2019" className="w-full h-32 object-cover rounded" />
+                  {/* Large satellite comparison */}
+                  <div className="grid grid-cols-2">
+                    <div className="border-r border-border">
+                      <div className="px-4 py-2 border-b border-border bg-surface">
+                        <span className="font-mono text-[11px] text-ink font-semibold">2019</span>
+                        <span className="text-[10px] text-muted3 ml-2">Baseline (EUDR cutoff 이전)</span>
+                      </div>
+                      <img src="/satellite/orig_2019.png" alt="2019" className="w-full h-48 object-cover" />
                     </div>
-                    <div className="p-3">
-                      <div className="text-[10px] text-muted3 mb-1 font-mono">2024 (Current)</div>
-                      <img src="/satellite/orig_2024.png" alt="2024" className="w-full h-32 object-cover rounded" />
+                    <div>
+                      <div className="px-4 py-2 border-b border-border bg-surface">
+                        <span className="font-mono text-[11px] text-ink font-semibold">2024</span>
+                        <span className="text-[10px] text-muted3 ml-2">Current</span>
+                      </div>
+                      <img src="/satellite/orig_2024.png" alt="2024" className="w-full h-48 object-cover" />
                     </div>
                   </div>
-                  <div className="border-t border-border p-4">
-                    <div className="grid grid-cols-4 gap-4 text-center mb-3">
-                      <div><div className="font-mono text-[9px] text-muted3">Forest 2019</div><div className="font-mono text-[16px] font-bold text-ink">78%</div></div>
-                      <div><div className="font-mono text-[9px] text-muted3">Forest 2024</div><div className="font-mono text-[16px] font-bold text-ink">47%</div></div>
-                      <div><div className="font-mono text-[9px] text-muted3">Change</div><div className="font-mono text-[16px] font-bold text-ink">-31%p</div></div>
-                      <div><div className="font-mono text-[9px] text-muted3">NDVI 2024</div><div className="font-mono text-[16px] font-bold text-ink">0.50</div></div>
+                  {/* CNN Segmentation */}
+                  <div className="grid grid-cols-2 border-t border-border">
+                    <div className="border-r border-border">
+                      <div className="px-4 py-2 border-b border-border bg-surface">
+                        <span className="font-mono text-[10px] text-muted2">CNN Segmentation 2024</span>
+                      </div>
+                      <img src="/satellite/seg_2024.png" alt="seg" className="w-full h-36 object-cover" />
                     </div>
-                    <p className="text-[12px] text-muted2 leading-[1.6]">Sentinel-2 L2A 위성영상 시계열 분석 결과, EUDR cutoff date(2020-12-31) 이후 유의미한 산림전용이 확인되었습니다. CNN U-Net Segmentation 및 NDVI 시계열에서 일관된 감소 추세가 관측됩니다. 산림 임계값(NDVI 0.6) 하회 시점은 2023년입니다.</p>
+                    <div>
+                      <div className="px-4 py-2 border-b border-border bg-surface">
+                        <span className="font-mono text-[10px] text-muted2">Grad-CAM Saliency 2024</span>
+                      </div>
+                      <img src="/satellite/overlay_2024.png" alt="cam" className="w-full h-36 object-cover" />
+                    </div>
+                  </div>
+                  {/* Key metrics */}
+                  <div className="border-t border-border p-4">
+                    <div className="grid grid-cols-5 gap-3 mb-4">
+                      {[
+                        { label: 'Forest 2019', value: '78%' },
+                        { label: 'Forest 2024', value: '47%' },
+                        { label: 'Change', value: '-31%p' },
+                        { label: 'NDVI 2024', value: '0.50' },
+                        { label: 'Risk Level', value: 'HIGH' },
+                      ].map(m => (
+                        <div key={m.label} className="text-center">
+                          <div className="font-mono text-[9px] text-muted3 uppercase">{m.label}</div>
+                          <div className="font-mono text-[18px] font-bold text-ink">{m.value}</div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="bg-surface rounded-lg p-3">
+                      <p className="text-[12px] text-ink leading-[1.6]"><span className="font-semibold">판정:</span> EUDR cutoff date(2020-12-31) 이후 산림 면적 31%p 감소 확인. CNN 분석에서 팜유 플랜테이션 확장에 의한 산림 전환이 주요 원인으로 식별됨. <span className="font-semibold">EUDR Art.3 및 Art.10 위반 의심.</span></p>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* 3. CBAM Cost Summary */}
+              {/* 3. CBAM Cost Analysis */}
               <div className="mb-8">
                 <div className="text-[11px] font-mono text-muted3 mb-3">3.0 CBAM CARBON COST ANALYSIS</div>
-                <div className="border border-border rounded-lg bg-white p-4">
-                  <table className="w-full text-[12px] mb-4">
-                    <thead>
-                      <tr className="border-b border-border text-left">
-                        <th className="pb-2 text-muted3 font-medium">항목</th>
-                        <th className="pb-2 text-muted3 font-medium">실측값</th>
-                        <th className="pb-2 text-muted3 font-medium">EU 기본값</th>
-                        <th className="pb-2 text-muted3 font-medium">차이</th>
-                      </tr>
-                    </thead>
-                    <tbody className="font-mono">
-                      <tr className="border-b border-border">
-                        <td className="py-2 text-muted2">배출계수</td>
-                        <td className="py-2 font-medium text-ink">3.2 tCO₂/t</td>
-                        <td className="py-2 text-muted2">4.5 tCO₂/t</td>
-                        <td className="py-2 font-medium text-ink">-29%</td>
-                      </tr>
-                      <tr className="border-b border-border">
-                        <td className="py-2 text-muted2">2034년 연간 비용</td>
-                        <td className="py-2 font-medium text-ink">18.0억 원</td>
-                        <td className="py-2 text-muted2">25.4억 원</td>
-                        <td className="py-2 font-medium text-ink">-7.3억</td>
-                      </tr>
-                      <tr>
-                        <td className="py-2 text-muted2">품질 스코어</td>
-                        <td className="py-2 font-medium text-ink">85/100</td>
-                        <td className="py-2 text-muted2">—</td>
-                        <td className="py-2 font-medium text-ink">High Quality</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <p className="text-[12px] text-muted2 leading-[1.6]">실측 데이터(3.2 tCO₂/t) 제출 시 EU 기본값 대비 연간 약 7.3억 원 절감이 가능합니다. 배출계수는 업종 평균(μ=3.2, σ=0.8) 내 정상 범위이며, AI 품질 스코어 85점으로 데이터 신뢰성이 확보되었습니다. CBAM 무상할당 폐지(2026년 2.5% → 2034년 100%)에 따라 비용은 연도별로 증가하며, 조기 감축 투자 시 회수 기간은 약 2.5년으로 추정됩니다.</p>
+                <div className="border border-border rounded-lg bg-white overflow-hidden">
+                  {/* Cost comparison - large numbers */}
+                  <div className="grid grid-cols-3 border-b border-border">
+                    <div className="p-4 border-r border-border text-center">
+                      <div className="text-[10px] text-muted3 mb-1">미제출 시 (EU 기본값)</div>
+                      <div className="font-mono text-[22px] font-bold text-ink">25.4<span className="text-[12px] font-normal text-muted2 ml-0.5">억/년</span></div>
+                      <div className="font-mono text-[11px] text-muted3 mt-1">4.5 tCO₂/t 적용</div>
+                    </div>
+                    <div className="p-4 border-r border-border text-center">
+                      <div className="text-[10px] text-muted3 mb-1">실측 제출 시</div>
+                      <div className="font-mono text-[22px] font-bold text-ink">18.0<span className="text-[12px] font-normal text-muted2 ml-0.5">억/년</span></div>
+                      <div className="font-mono text-[11px] text-muted3 mt-1">3.2 tCO₂/t 적용</div>
+                    </div>
+                    <div className="p-4 text-center bg-surface">
+                      <div className="text-[10px] text-muted3 mb-1">연간 절감</div>
+                      <div className="font-mono text-[22px] font-bold text-ink">7.3<span className="text-[12px] font-normal text-muted2 ml-0.5">억 원</span></div>
+                      <div className="font-mono text-[11px] text-muted3 mt-1">2034년 기준</div>
+                    </div>
+                  </div>
+                  {/* Year-by-year table */}
+                  <div className="p-4 border-b border-border">
+                    <div className="text-[11px] font-semibold text-ink mb-2">연도별 CBAM 비용 추이 (2026~2034)</div>
+                    <table className="w-full text-[11px] font-mono">
+                      <thead>
+                        <tr className="border-b border-border">
+                          <th className="py-1.5 text-left text-muted3 font-medium">Year</th>
+                          <th className="py-1.5 text-left text-muted3 font-medium">Phase-in</th>
+                          <th className="py-1.5 text-left text-muted3 font-medium">실측</th>
+                          <th className="py-1.5 text-left text-muted3 font-medium">기본값</th>
+                          <th className="py-1.5 text-left text-muted3 font-medium">절감</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {[
+                          { y: 2026, p: '2.5%', a: '0.1억', d: '0.2억', s: '0.1억' },
+                          { y: 2028, p: '10%', a: '0.6억', d: '1.0억', s: '0.4억' },
+                          { y: 2030, p: '35%', a: '2.9억', d: '4.8억', s: '1.9억' },
+                          { y: 2032, p: '60%', a: '7.2억', d: '11.0억', s: '3.8억' },
+                          { y: 2034, p: '100%', a: '18.0억', d: '25.4억', s: '7.3억' },
+                        ].map(r => (
+                          <tr key={r.y} className="border-b border-border">
+                            <td className="py-1.5 font-semibold text-ink">{r.y}</td>
+                            <td className="py-1.5 text-muted2">{r.p}</td>
+                            <td className="py-1.5 text-ink font-medium">{r.a}</td>
+                            <td className="py-1.5 text-muted2">{r.d}</td>
+                            <td className="py-1.5 text-ink font-medium">{r.s}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  {/* Summary */}
+                  <div className="p-4">
+                    <div className="bg-surface rounded-lg p-3">
+                      <p className="text-[12px] text-ink leading-[1.6]"><span className="font-semibold">결론:</span> 실측 데이터 제출이 EU 기본값 대비 연간 <span className="font-semibold">7.3억 원</span> 절감 효과. 배출계수 3.2 tCO₂/t은 업종 평균 내 정상 범위(z=0.0). 추가 감축 시(바이오매스 보일러 -0.4t) 절감액 <span className="font-semibold">9.5억 원</span>까지 확대 가능.</p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
