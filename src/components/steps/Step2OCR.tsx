@@ -88,7 +88,7 @@ export default function Step2OCR({ skipLoading = false }: { skipLoading?: boolea
 
         <AnimatePresence mode="wait">
           {phase === 'idle' && (
-            <motion.div key="idle" exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.2 }} className="border border-border rounded-card p-5 bg-white">
+            <motion.div key="idle" exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.2 }} className="border border-border rounded-card p-5 bg-white shadow-sm">
               <h2 className="font-heading text-[20px] font-bold text-ink tracking-tight mb-1">OCR 자동 추출</h2>
               <p className="text-[12px] text-muted2 mb-4">서류에서 핵심 정보를 AI가 읽어냅니다. 5개 문서 (12 pages)</p>
               <div className="flex gap-2">
@@ -191,7 +191,7 @@ export default function Step2OCR({ skipLoading = false }: { skipLoading?: boolea
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: 0.2 }}
-                  className="mt-4 border border-border rounded-card p-5 bg-white"
+                  className="mt-4 border border-border rounded-card p-5 bg-white shadow-sm"
                 >
                   <div className="text-[12px] font-semibold text-ink mb-3 flex items-center gap-2">
                     <Layers size={14} />
