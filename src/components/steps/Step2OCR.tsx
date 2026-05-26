@@ -172,7 +172,7 @@ export default function Step2OCR({ skipLoading = false }: { skipLoading?: boolea
                       }`}
                     >
                       <span className="font-mono text-[11px] text-muted2">{item.field}</span>
-                      <span className={`text-[13px] font-medium ${item.confidence < 93 ? 'text-ink underline decoration-amber-300 decoration-2 underline-offset-2' : 'text-ink'}`}>{item.value}</span>
+                      <span className={`text-[13px] font-medium ${item.confidence < 93 ? 'text-ink' : 'text-ink'}`}>{item.value}</span>
                       <ConfidenceBar value={item.confidence} />
                       <span className="font-mono text-[10px] text-muted3">{item.source}</span>
                       {item.confidence < 93 ? (

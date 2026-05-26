@@ -195,7 +195,7 @@ export default function App() {
             { label: 'CSDDD', sub: '2027', active: false },
           ].map((r) => (
             <div key={r.label} className="flex items-center gap-2.5 px-3 py-1.5 text-[12px] text-muted2">
-              <span className={`w-[7px] h-[7px] rounded-full ${r.active ? 'bg-amber-500' : 'bg-border2'}`} />
+              <span className={`w-[7px] h-[7px] rounded-full ${r.active ? 'bg-ink' : 'bg-border2'}`} />
               <span>{r.label}</span>
               <span className="ml-auto font-mono text-[9px] text-muted3">{r.sub}</span>
             </div>

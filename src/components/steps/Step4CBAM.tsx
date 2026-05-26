@@ -189,7 +189,7 @@ export default function Step4CBAM({ skipLoading = false }: { skipLoading?: boole
                     <div className="bg-surface rounded-card border border-border p-4 space-y-2">
                       {scoreChecks.slice(0, visibleChecks).map((c, i) => (
                         <motion.div key={i} initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.2 }} className="flex items-start gap-2 text-[12px]">
-                          {c.pass ? <CheckCircle2 size={14} className="text-muted2 shrink-0 mt-0.5" /> : <XCircle size={14} className="text-amber-500 shrink-0 mt-0.5" />}
+                          {c.pass ? <CheckCircle2 size={14} className="text-muted2 shrink-0 mt-0.5" /> : <XCircle size={14} className="text-muted3 shrink-0 mt-0.5" />}
                           <span className="text-muted2">{c.msg}</span>
                         </motion.div>
                       ))}
@@ -302,7 +302,7 @@ export default function Step4CBAM({ skipLoading = false }: { skipLoading?: boole
                     <div className="flex items-center gap-2">
                       <input type="number" step="0.01" value={tamperValue} onChange={e => { setTamperValue(e.target.value); setTamperResult(null) }}
                         className="w-24 px-3 py-2 border border-border rounded-lg text-[12px] font-mono focus:outline-none focus:ring-2 focus:ring-ink/10" />
-                      <button onClick={handleTamper} className="px-4 py-2 text-[11px] font-semibold rounded-lg bg-red-600 text-white hover:bg-red-700 transition-all active:scale-[0.98]">
+                      <button onClick={handleTamper} className="px-4 py-2 text-[11px] font-semibold rounded-lg bg-ink text-white hover:opacity-90 transition-all active:scale-[0.98]">
                         변조 검증
                       </button>
                       {tamperResult && (
