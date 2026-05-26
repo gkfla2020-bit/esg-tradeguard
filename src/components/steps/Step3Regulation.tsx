@@ -169,57 +169,52 @@ export default function Step3Regulation({ skipLoading = false, satelliteComplete
 
               {/* 2. Findings */}
               <div className="mb-8">
-                <div className="text-[11px] font-mono text-muted3 mb-3">2.0 FINDINGS BY ARTICLE</div>
-                <div className="space-y-2">
+                <div className="text-[11px] font-mono text-muted3 mb-4">2.0 DETAILED FINDINGS</div>
+                <div className="space-y-5">
                   {activeRules.slice(0, visibleCount).map((rule, i) => (
-                    <motion.div
-                      key={`${rule.reg}-${rule.article}`}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.2 }}
-                      className="border border-border rounded-lg bg-white overflow-hidden"
-                    >
-                      <div
-                        onClick={() => setExpanded(i === expanded ? null : i)}
-                        className={`px-4 py-3 flex items-center gap-3 cursor-pointer transition-colors ${expanded === i ? 'bg-surface' : 'hover:bg-surface/50'}`}
-                      >
-                        <span className="font-mono text-[10px] text-muted3 w-[20px]">2.{i + 1}</span>
-                        <span className="font-mono text-[10px] text-muted3 w-[44px]">{rule.reg}</span>
-                        <span className="font-mono text-[11px] text-muted2 w-[80px]">{rule.article}</span>
-                        <span className="flex-1 text-[13px] text-ink">{rule.desc}</span>
-                        <span className="font-mono text-[10px] text-ink uppercase px-2 py-0.5 bg-surface2 rounded">{rule.status === 'pending' ? 'pending' : rule.status}</span>
-                        <ChevronDown size={13} className={`text-muted3 transition-transform ${expanded === i ? 'rotate-180' : ''}`} />
+                    <div key={`${rule.reg}-${rule.article}`} className="border-b border-border pb-5">
+                      <div className="flex items-baseline gap-3 mb-2">
+                        <span className="font-mono text-[10px] text-muted3">2.{i + 1}</span>
+                        <span className="font-mono text-[11px] text-muted2">{rule.reg} {rule.article}</span>
+                        <span className="font-mono text-[10px] uppercase px-2 py-0.5 bg-surface2 rounded">{rule.status === 'pending' ? 'pending' : rule.status}</span>
                       </div>
-                      <AnimatePresence>
-                        {expanded === i && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: 'auto', opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.2 }}
-                            className="overflow-hidden"
-                          >
-                            <div className="px-4 pb-3 pt-1 border-t border-border">
-                              <div className="grid grid-cols-[80px_1fr] gap-y-2 text-[12px] mt-2">
-                                <span className="text-muted3">소견</span><span className="text-muted2">{rule.detail}</span>
-                                <span className="text-muted3">근거</span><span className="font-mono text-muted2 text-[11px]">{rule.evidence}</span>
-                                <span className="text-muted3">위반 시</span><span className="text-ink font-medium">{rule.penalty}</span>
-                              </div>
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </motion.div>
+                      <div className="text-[14px] font-semibold text-ink mb-2">{rule.desc}</div>
+                      <div className="text-[12px] text-muted2 leading-relaxed mb-3">{rule.detail}</div>
+                      <div className="grid grid-cols-[70px_1fr] gap-y-1.5 text-[11px]">
+                        <span className="text-muted3">근거</span><span className="font-mono text-muted2">{rule.evidence}</span>
+                        <span className="text-muted3">위반 시</span><span className="text-ink">{rule.penalty}</span>
+                      </div>
+                    </div>
                   ))}
                 </div>
               </div>
 
-              {/* 3. Conclusion */}
+              {/* 3. Risk Assessment */}
+              <div className="mb-8">
+                <div className="text-[11px] font-mono text-muted3 mb-3">3.0 RISK ASSESSMENT</div>
+                <div className="border border-border rounded-lg p-4 bg-white text-[13px] text-ink leading-[1.8]">
+                  <p className="mb-3">본 건(PT. Sawit Kalimantan Utama, CPO 2,400MT, HS 1511.10.00)에 대한 종합 위험 평가 결과는 다음과 같습니다.</p>
+                  <p className="mb-3"><span className="font-semibold">EUDR 산림전용 규제:</span> 서류 기반 검증(Art.4 DDS 제출, Art.9 GPS polygon, Art.12 합법성)은 적합으로 판정되었습니다. 다만 Art.3(산림전용 금지 의무) 및 Art.10(Cutoff date 2020-12-31 이후 산림전용 없음) 항목은 Sentinel-2 위성 시계열 분석(2019~2024)에서 산림 면적 78% → 47%로 31%p 감소가 감지되어 주의(WARNING) 판정을 받았습니다. 이 상태로 EU 수출 시 EUDR Art.3 위반으로 통관 거부 및 매출액 4% 과징금이 부과될 수 있습니다.</p>
+                  <p className="mb-3"><span className="font-semibold">CBAM 탄소국경조정:</span> 내재 탄소배출량 3.2 tCO₂/t으로 보고 포맷 적합(Art.35), 간접 배출 0.35 tCO₂/t 포함 확인(Annex III). EU 기본값(4.5 tCO₂/t) 대비 29% 낮아 실측 데이터 제출이 유리하며, 2034년 기준 연간 약 7.3억 원 절감 효과가 예상됩니다.</p>
+                  <p><span className="font-semibold">CSDDD 공급망 실사:</span> 소규모 농가 포함 공급망 목록 제출(Art.7), RSPO 프로그램 참여 확인(Art.8). ILO 기본 조약 위반 사항 미확인. 적합 판정.</p>
+                </div>
+              </div>
+
+              {/* 4. Recommendations */}
+              <div className="mb-8">
+                <div className="text-[11px] font-mono text-muted3 mb-3">4.0 RECOMMENDATIONS</div>
+                <div className="border border-border rounded-lg p-4 bg-white text-[13px] text-ink leading-[1.8]">
+                  <p className="mb-2">1. EUDR Art.3/Art.10 관련: 대체 공급원 확보 또는 원산지 추가 현장 실사를 권장합니다. 현 공급원의 산림 감소 추세가 지속될 경우 2025년 이후 EU 시장 진입이 차단될 수 있습니다.</p>
+                  <p className="mb-2">2. CBAM 관련: 현재 실측 배출계수(3.2 tCO₂/t)를 유지하되, 바이오매스 보일러 전환(−0.4t) 및 메탄 포집(−0.3t) 투자를 통해 추가 절감이 가능합니다.</p>
+                  <p>3. 본 보고서를 EU 수입국 관할 당국에 DDS(Due Diligence Statement)로 제출할 수 있습니다. 위성 검증 결과가 업데이트되면 보고서가 자동 갱신됩니다.</p>
+                </div>
+              </div>
+
+              {/* 5. Conclusion */}
               <div className="mb-6">
-                <div className="text-[11px] font-mono text-muted3 mb-3">3.0 CONCLUSION</div>
-                <div className="border border-border rounded-lg p-4 bg-white text-[13px] text-ink leading-relaxed">
-                  본 케이스는 서류 기반 검증에서 {counts.pass}개 조항이 적합 판정을 받았으나, EUDR Art.3(산림전용 금지) 및 Art.10(Cutoff date) 항목은 위성 환경 검증 결과에 따라 최종 판정이 필요합니다.
-                  위성 검증이 완료되면 본 보고서가 자동 업데이트됩니다.
+                <div className="text-[11px] font-mono text-muted3 mb-3">5.0 CONCLUSION</div>
+                <div className="border border-border rounded-lg p-4 bg-white text-[13px] text-ink leading-[1.8]">
+                  본 Due Diligence 검증 결과, 총 {RULES.length}개 규제 조항 중 {counts.pass}개 조항이 적합(Compliant), {counts.warn}개 조항이 주의(Attention Required) 판정을 받았습니다. 주의 판정 항목은 EUDR 산림전용 관련 조항으로, 위성 기반 CNN Segmentation 및 NDVI 시계열 분석에서 유의미한 산림 감소가 감지된 데 기인합니다. 해당 항목의 최종 판정을 위해 추가 현장 실사 또는 대체 공급원 확보를 권장하며, 이를 충족할 경우 전체 조항 적합 판정이 가능합니다.
                 </div>
               </div>
 
