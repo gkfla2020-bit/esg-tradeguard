@@ -143,9 +143,9 @@ export default function Step3Regulation({ skipLoading = false, satelliteComplete
               {/* Summary cards */}
               <div className="grid grid-cols-3 gap-3 mb-5">
                 {[
-                  { label: 'PASS', count: counts.pass, icon: ShieldCheck, border: 'border-border', bg: 'bg-white', text: 'text-ink' },
-                  { label: 'WARNING', count: counts.warn, icon: ShieldAlert, border: 'border-border', bg: 'bg-white', text: 'text-ink' },
-                  { label: 'FAIL', count: counts.fail, icon: ShieldX, border: 'border-border', bg: 'bg-white', text: 'text-ink' },
+                  { label: 'PASS', count: counts.pass, icon: ShieldCheck, border: 'border-emerald-300', bg: 'bg-emerald-50', text: 'text-emerald-700' },
+                  { label: 'WARNING', count: counts.warn, icon: ShieldAlert, border: 'border-amber-300', bg: 'bg-amber-50', text: 'text-amber-700' },
+                  { label: 'FAIL', count: counts.fail, icon: ShieldX, border: 'border-red-300', bg: 'bg-red-50', text: 'text-red-700' },
                 ].map(s => {
                   const statusKey = (s.label === 'WARNING' ? 'warn' : s.label.toLowerCase()) as RuleStatus
                   const isActive = filter === statusKey
@@ -190,7 +190,7 @@ export default function Step3Regulation({ skipLoading = false, satelliteComplete
                       <div
                         onClick={() => setExpanded(i === expanded ? null : i)}
                         className={`px-5 py-3.5 flex items-center gap-4 cursor-pointer transition-colors ${
-                          expanded === i ? 'bg-surface border-l-2 border-l-ink pl-[18px]' : 'hover:bg-surface/50'
+                          expanded === i ? 'bg-blue-50/60 border-l-2 border-l-blue-500 pl-[18px]' : 'hover:bg-surface/50'
                         }`}
                       >
                         <StatusIcon status={rule.status} />
@@ -198,9 +198,9 @@ export default function Step3Regulation({ skipLoading = false, satelliteComplete
                         <span className="w-[90px] shrink-0 font-mono text-[11px] text-muted2">{rule.article}</span>
                         <span className="flex-1 text-[13px] text-ink">{rule.desc}</span>
                         <span className={`px-2.5 py-1 rounded-md text-[10px] font-semibold uppercase ${
-                          rule.status === 'pass' ? 'bg-surface2 text-ink' :
-                          rule.status === 'warn' ? 'bg-surface2 text-ink' :
-                          rule.status === 'pending' ? 'bg-surface2 text-muted3' : 'bg-surface2 text-ink'
+                          rule.status === 'pass' ? 'bg-emerald-100 text-emerald-700' :
+                          rule.status === 'warn' ? 'bg-amber-100 text-amber-700' :
+                          rule.status === 'pending' ? 'bg-surface2 text-muted3' : 'bg-red-100 text-red-700'
                         }`}>{rule.status === 'pending' ? '대기' : rule.status}</span>
                         <ChevronDown size={14} className={`text-muted3 transition-transform ${expanded === i ? 'rotate-180' : ''}`} />
                       </div>
@@ -239,13 +239,13 @@ export default function Step3Regulation({ skipLoading = false, satelliteComplete
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: 0.2 }}
-                  className="mt-4 border border-border rounded-card p-4 bg-white flex items-center gap-4"
+                  className="mt-4 border-2 border-amber-400 rounded-card p-4 bg-amber-50 flex items-center gap-4"
                 >
-                  <ShieldAlert size={20} className="text-ink shrink-0" />
+                  <ShieldAlert size={24} className="text-amber-600 shrink-0" />
                   <div>
-                    <div className="text-[13px] font-semibold text-ink">종합 판정: 서류 적합 · 위성 검증 대기</div>
-                    <div className="text-[11px] text-muted2 mt-0.5">
-                      서류 기반 7개 조항 PASS. EUDR Art.3, Art.10은 위성 환경 검증 완료 후 최종 판정.
+                    <div className="text-[13px] font-semibold text-amber-800">종합 판정: 서류 적합 · 위성 검증 대기</div>
+                    <div className="text-[11px] text-amber-700 mt-0.5">
+                      서류 기반 7개 조항 PASS. EUDR Art.3, Art.10은 위성 환경 검증(Step 5) 완료 후 최종 판정.
                     </div>
                   </div>
                 </motion.div>
