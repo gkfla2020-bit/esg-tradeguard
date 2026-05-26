@@ -175,7 +175,7 @@ export default function Step5Satellite({ skipLoading = false }: { skipLoading?: 
               <div className="flex items-center gap-3 mb-4">
                 <Loader2 size={16} className="text-ink animate-spin" />
                 <span className="text-[13px] font-semibold text-ink">분석 중</span>
-                <span className="font-mono text-[11px] text-muted3 ml-auto">{Math.round(analysisProgress)}%</span>
+                <Loader2 size={13} className="text-muted3 animate-spin ml-auto" />
               </div>
               <div className="w-full h-2 bg-surface2 rounded-full overflow-hidden">
                 <div className="h-full bg-ink rounded-full transition-all duration-100" style={{ width: `${analysisProgress}%` }} />

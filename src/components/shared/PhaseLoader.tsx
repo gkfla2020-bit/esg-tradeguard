@@ -53,11 +53,10 @@ export default function PhaseLoader({ phases, onComplete }: Props) {
           transition={{ duration: 0.08 }}
         />
       </div>
-      {/* Current status — single line, minimal */}
+      {/* Current status — single line */}
       <div className="flex items-center gap-2">
         <Loader2 size={13} className="text-muted3 animate-spin" />
         <span className="text-[12px] text-muted2">{currentLabel}</span>
-        <span className="ml-auto font-mono text-[11px] text-muted3 tabular-nums">{Math.round(overallProgress)}%</span>
       </div>
     </div>
   )
