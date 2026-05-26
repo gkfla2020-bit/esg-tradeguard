@@ -239,7 +239,7 @@ export default function App() {
           <div className="h-[2px] bg-surface2">
             <motion.div className="h-full bg-ink" animate={{ width: `${(step / STEPS.length) * 100}%` }} transition={{ duration: 0.4, ease: 'easeOut' }} />
           </div>
-          <div className="h-[50px] flex items-center px-8 justify-between">
+          <div className="h-12 flex items-center px-8 justify-between">
             <div className="flex items-center gap-1.5">
               <span onClick={() => navigateStep(1)} className="text-[12px] text-muted3 hover:text-ink cursor-pointer transition-colors">Pipeline</span>
               <ChevronRight size={10} className="text-muted3" />
@@ -279,7 +279,7 @@ export default function App() {
         </div>
 
         {/* Bottom bar */}
-        <div className="h-[28px] border-t border-border bg-surface flex items-center px-8 text-[9px] text-muted3 font-mono shrink-0 select-none">
+        <div className="h-7 border-t border-border bg-surface flex items-center px-8 text-[9px] text-muted3 font-mono shrink-0 select-none">
           <span className="ml-auto">EcoTrade v2.0</span>
         </div>
       </main>
