@@ -234,9 +234,106 @@ export default function Step3Regulation({ skipLoading = false, satelliteComplete
                 </div>
               </div>
 
-              {/* 2. Findings */}
+              {/* 2. Satellite Analysis Summary */}
               <div className="mb-8">
-                <div className="text-[11px] font-mono text-muted3 mb-4">2.0 DETAILED FINDINGS</div>
+                <div className="text-[11px] font-mono text-muted3 mb-3">2.0 SATELLITE ENVIRONMENTAL VERIFICATION</div>
+                <div className="border border-border rounded-lg overflow-hidden bg-white">
+                  <div className="grid grid-cols-2 gap-0">
+                    <div className="p-3 border-r border-border">
+                      <div className="text-[10px] text-muted3 mb-1 font-mono">2019 (Baseline)</div>
+                      <img src="/satellite/orig_2019.png" alt="2019" className="w-full h-32 object-cover rounded" />
+                    </div>
+                    <div className="p-3">
+                      <div className="text-[10px] text-muted3 mb-1 font-mono">2024 (Current)</div>
+                      <img src="/satellite/orig_2024.png" alt="2024" className="w-full h-32 object-cover rounded" />
+                    </div>
+                  </div>
+                  <div className="border-t border-border p-4">
+                    <div className="grid grid-cols-4 gap-4 text-center mb-3">
+                      <div><div className="font-mono text-[9px] text-muted3">Forest 2019</div><div className="font-mono text-[16px] font-bold text-ink">78%</div></div>
+                      <div><div className="font-mono text-[9px] text-muted3">Forest 2024</div><div className="font-mono text-[16px] font-bold text-ink">47%</div></div>
+                      <div><div className="font-mono text-[9px] text-muted3">Change</div><div className="font-mono text-[16px] font-bold text-ink">-31%p</div></div>
+                      <div><div className="font-mono text-[9px] text-muted3">NDVI 2024</div><div className="font-mono text-[16px] font-bold text-ink">0.50</div></div>
+                    </div>
+                    <p className="text-[12px] text-muted2 leading-[1.6]">Sentinel-2 L2A 위성영상 시계열 분석 결과, EUDR cutoff date(2020-12-31) 이후 유의미한 산림전용이 확인되었습니다. CNN U-Net Segmentation 및 NDVI 시계열에서 일관된 감소 추세가 관측됩니다. 산림 임계값(NDVI 0.6) 하회 시점은 2023년입니다.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* 3. CBAM Cost Summary */}
+              <div className="mb-8">
+                <div className="text-[11px] font-mono text-muted3 mb-3">3.0 CBAM CARBON COST ANALYSIS</div>
+                <div className="border border-border rounded-lg bg-white p-4">
+                  <table className="w-full text-[12px] mb-4">
+                    <thead>
+                      <tr className="border-b border-border text-left">
+                        <th className="pb-2 text-muted3 font-medium">항목</th>
+                        <th className="pb-2 text-muted3 font-medium">실측값</th>
+                        <th className="pb-2 text-muted3 font-medium">EU 기본값</th>
+                        <th className="pb-2 text-muted3 font-medium">차이</th>
+                      </tr>
+                    </thead>
+                    <tbody className="font-mono">
+                      <tr className="border-b border-border">
+                        <td className="py-2 text-muted2">배출계수</td>
+                        <td className="py-2 font-medium text-ink">3.2 tCO₂/t</td>
+                        <td className="py-2 text-muted2">4.5 tCO₂/t</td>
+                        <td className="py-2 font-medium text-ink">-29%</td>
+                      </tr>
+                      <tr className="border-b border-border">
+                        <td className="py-2 text-muted2">2034년 연간 비용</td>
+                        <td className="py-2 font-medium text-ink">18.0억 원</td>
+                        <td className="py-2 text-muted2">25.4억 원</td>
+                        <td className="py-2 font-medium text-ink">-7.3억</td>
+                      </tr>
+                      <tr>
+                        <td className="py-2 text-muted2">품질 스코어</td>
+                        <td className="py-2 font-medium text-ink">85/100</td>
+                        <td className="py-2 text-muted2">—</td>
+                        <td className="py-2 font-medium text-ink">High Quality</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p className="text-[12px] text-muted2 leading-[1.6]">실측 데이터(3.2 tCO₂/t) 제출 시 EU 기본값 대비 연간 약 7.3억 원 절감이 가능합니다. 배출계수는 업종 평균(μ=3.2, σ=0.8) 내 정상 범위이며, AI 품질 스코어 85점으로 데이터 신뢰성이 확보되었습니다. CBAM 무상할당 폐지(2026년 2.5% → 2034년 100%)에 따라 비용은 연도별로 증가하며, 조기 감축 투자 시 회수 기간은 약 2.5년으로 추정됩니다.</p>
+                </div>
+              </div>
+
+              {/* 4. Document Verification Summary */}
+              <div className="mb-8">
+                <div className="text-[11px] font-mono text-muted3 mb-3">4.0 DOCUMENT VERIFICATION</div>
+                <div className="border border-border rounded-lg bg-white p-4">
+                  <table className="w-full text-[12px]">
+                    <thead>
+                      <tr className="border-b border-border text-left">
+                        <th className="pb-2 text-muted3 font-medium">문서</th>
+                        <th className="pb-2 text-muted3 font-medium">상태</th>
+                        <th className="pb-2 text-muted3 font-medium">비고</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        { doc: 'Invoice (상업 송장)', status: 'Valid', note: '수출기업, 품목, 수량 확인' },
+                        { doc: 'Bill of Lading (선하증권)', status: 'Valid', note: '운송 경로, 선박명 확인' },
+                        { doc: 'Origin Certificate (원산지 증명)', status: 'Valid', note: 'ISCC EU Plus 인증 유효' },
+                        { doc: 'Phytosanitary Certificate', status: 'Valid', note: '식물검역 적합' },
+                        { doc: 'DDS Self-Declaration', status: 'Valid', note: 'GPS polygon 포함, 8페이지' },
+                        { doc: 'GPS Polygon (GeoJSON)', status: 'Valid', note: '4.2ha, 좌표 일치 확인' },
+                      ].map(d => (
+                        <tr key={d.doc} className="border-b border-border">
+                          <td className="py-2 text-ink">{d.doc}</td>
+                          <td className="py-2 font-mono text-[11px] text-ink">{d.status}</td>
+                          <td className="py-2 text-muted2">{d.note}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                  <p className="text-[12px] text-muted2 leading-[1.6] mt-3">전체 6건의 서류가 제출되었으며, OCR 자동 추출(평균 정확도 96.5%)과 문서 간 교차 검증(Invoice↔B/L, Invoice↔Origin Cert, B/L↔DDS 전체 일치)을 통과하였습니다. 수동 검증이 권장되는 항목(confidence {'<'} 93%)은 Harvest Period(92.3%) 및 ETA EU Port(93.7%)이며, 핵심 판정에 영향을 미치지 않습니다.</p>
+                </div>
+              </div>
+
+              {/* 5. Regulatory Findings */}
+              <div className="mb-8">
+                <div className="text-[11px] font-mono text-muted3 mb-4">5.0 REGULATORY FINDINGS</div>
                 <div className="space-y-5">
                   {activeRules.slice(0, visibleCount).map((rule, i) => (
                     <div key={`${rule.reg}-${rule.article}`} className="border border-border rounded-lg mb-4 overflow-hidden">
@@ -294,7 +391,7 @@ export default function Step3Regulation({ skipLoading = false, satelliteComplete
 
               {/* 3. Risk Assessment */}
               <div className="mb-8">
-                <div className="text-[11px] font-mono text-muted3 mb-3">3.0 RISK ASSESSMENT</div>
+                <div className="text-[11px] font-mono text-muted3 mb-3">6.0 RISK ASSESSMENT</div>
                 <div className="border border-border rounded-lg p-4 bg-white text-[13px] text-ink leading-[1.8]">
                   <p className="mb-3">본 건(PT. Sawit Kalimantan Utama, CPO 2,400MT, HS 1511.10.00)에 대한 종합 위험 평가 결과는 다음과 같습니다.</p>
                   <p className="mb-3"><span className="font-semibold">EUDR 산림전용 규제:</span> 서류 기반 검증(Art.4 DDS 제출, Art.9 GPS polygon, Art.12 합법성)은 적합으로 판정되었습니다. 다만 Art.3(산림전용 금지 의무) 및 Art.10(Cutoff date 2020-12-31 이후 산림전용 없음) 항목은 Sentinel-2 위성 시계열 분석(2019~2024)에서 산림 면적 78% → 47%로 31%p 감소가 감지되어 주의(WARNING) 판정을 받았습니다. 이 상태로 EU 수출 시 EUDR Art.3 위반으로 통관 거부 및 매출액 4% 과징금이 부과될 수 있습니다.</p>
@@ -305,7 +402,7 @@ export default function Step3Regulation({ skipLoading = false, satelliteComplete
 
               {/* 4. Recommendations */}
               <div className="mb-8">
-                <div className="text-[11px] font-mono text-muted3 mb-3">4.0 RECOMMENDATIONS</div>
+                <div className="text-[11px] font-mono text-muted3 mb-3">7.0 RECOMMENDATIONS</div>
                 <div className="border border-border rounded-lg p-4 bg-white text-[13px] text-ink leading-[1.8]">
                   <p className="mb-2">1. EUDR Art.3/Art.10 관련: 대체 공급원 확보 또는 원산지 추가 현장 실사를 권장합니다. 현 공급원의 산림 감소 추세가 지속될 경우 2025년 이후 EU 시장 진입이 차단될 수 있습니다.</p>
                   <p className="mb-2">2. CBAM 관련: 현재 실측 배출계수(3.2 tCO₂/t)를 유지하되, 바이오매스 보일러 전환(−0.4t) 및 메탄 포집(−0.3t) 투자를 통해 추가 절감이 가능합니다.</p>
@@ -315,7 +412,7 @@ export default function Step3Regulation({ skipLoading = false, satelliteComplete
 
               {/* 5. Conclusion */}
               <div className="mb-6">
-                <div className="text-[11px] font-mono text-muted3 mb-3">5.0 CONCLUSION</div>
+                <div className="text-[11px] font-mono text-muted3 mb-3">8.0 CONCLUSION</div>
                 <div className="border border-border rounded-lg p-4 bg-white text-[13px] text-ink leading-[1.8]">
                   본 Due Diligence 검증 결과, 총 {RULES.length}개 규제 조항 중 {counts.pass}개 조항이 적합(Compliant), {counts.warn}개 조항이 주의(Attention Required) 판정을 받았습니다. 주의 판정 항목은 EUDR 산림전용 관련 조항으로, 위성 기반 CNN Segmentation 및 NDVI 시계열 분석에서 유의미한 산림 감소가 감지된 데 기인합니다. 해당 항목의 최종 판정을 위해 추가 현장 실사 또는 대체 공급원 확보를 권장하며, 이를 충족할 경우 전체 조항 적합 판정이 가능합니다.
                 </div>
