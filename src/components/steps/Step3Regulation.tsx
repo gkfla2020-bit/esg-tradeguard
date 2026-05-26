@@ -239,21 +239,53 @@ export default function Step3Regulation({ skipLoading = false, satelliteComplete
                 <div className="text-[11px] font-mono text-muted3 mb-4">2.0 DETAILED FINDINGS</div>
                 <div className="space-y-5">
                   {activeRules.slice(0, visibleCount).map((rule, i) => (
-                    <div key={`${rule.reg}-${rule.article}`} className="border-b border-border pb-6 mb-2">
-                      <div className="flex items-baseline gap-3 mb-1">
+                    <div key={`${rule.reg}-${rule.article}`} className="border border-border rounded-lg mb-4 overflow-hidden">
+                      {/* Finding header */}
+                      <div className="px-5 py-3 bg-surface flex items-center gap-3 border-b border-border">
                         <span className="font-mono text-[10px] text-muted3">2.{i + 1}</span>
-                        <span className="font-mono text-[11px] text-muted2">{rule.reg} {rule.article}</span>
-                        <span className="font-mono text-[10px] uppercase px-2 py-0.5 bg-surface2 rounded">{rule.status === 'pending' ? 'pending' : rule.status}</span>
+                        <span className="font-mono text-[11px] font-semibold text-ink">{rule.reg} {rule.article}</span>
+                        <span className="text-[13px] font-semibold text-ink">{rule.desc}</span>
+                        <span className="ml-auto font-mono text-[10px] uppercase px-2.5 py-1 bg-white border border-border rounded font-semibold">{rule.status === 'pending' ? 'PENDING' : rule.status.toUpperCase()}</span>
                       </div>
-                      <div className="text-[14px] font-semibold text-ink mb-3">{rule.desc}</div>
-                      <div className="space-y-3 text-[12px] leading-[1.7]">
-                        <div><span className="font-semibold text-ink">배경: </span><span className="text-muted2">{rule.background}</span></div>
-                        <div><span className="font-semibold text-ink">검증 방법: </span><span className="text-muted2">{rule.method}</span></div>
-                        <div><span className="font-semibold text-ink">판정 결과: </span><span className="text-muted2">{rule.finding}</span></div>
-                        <div><span className="font-semibold text-ink">근거 자료: </span><span className="font-mono text-[11px] text-muted2">{rule.evidence}</span></div>
-                        <div><span className="font-semibold text-ink">위험: </span><span className="text-muted2">{rule.risk}</span></div>
-                        <div><span className="font-semibold text-ink">위반 시 제재: </span><span className="text-ink">{rule.penalty}</span></div>
-                        <div><span className="font-semibold text-ink">권고사항: </span><span className="text-muted2">{rule.recommendation}</span></div>
+
+                      {/* Finding body */}
+                      <div className="px-5 py-4 bg-white">
+                        {/* Background */}
+                        <p className="text-[12px] text-muted2 leading-[1.7] mb-4">{rule.background}</p>
+
+                        {/* Key info table */}
+                        <table className="w-full text-[12px] mb-4 border-collapse">
+                          <tbody>
+                            <tr className="border-t border-border">
+                              <td className="py-2 pr-4 text-muted3 font-medium w-[100px] align-top">검증 방법</td>
+                              <td className="py-2 text-muted2 leading-[1.6]">{rule.method}</td>
+                            </tr>
+                            <tr className="border-t border-border">
+                              <td className="py-2 pr-4 text-muted3 font-medium align-top">판정 결과</td>
+                              <td className="py-2 text-ink leading-[1.6] font-medium">{rule.finding}</td>
+                            </tr>
+                            <tr className="border-t border-border">
+                              <td className="py-2 pr-4 text-muted3 font-medium align-top">근거 자료</td>
+                              <td className="py-2 font-mono text-[11px] text-muted2">{rule.evidence}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+
+                        {/* Risk + Penalty box */}
+                        <div className="bg-surface rounded-lg p-3 mb-3">
+                          <div className="text-[11px] font-semibold text-ink mb-1">위험 평가</div>
+                          <p className="text-[12px] text-muted2 leading-[1.6] mb-2">{rule.risk}</p>
+                          <div className="flex items-center gap-2 text-[11px]">
+                            <span className="text-muted3">제재:</span>
+                            <span className="font-semibold text-ink">{rule.penalty}</span>
+                          </div>
+                        </div>
+
+                        {/* Recommendation */}
+                        <div className="border-t border-border pt-3">
+                          <div className="text-[11px] font-semibold text-ink mb-1">권고사항</div>
+                          <p className="text-[12px] text-muted2 leading-[1.6]">{rule.recommendation}</p>
+                        </div>
                       </div>
                     </div>
                   ))}
