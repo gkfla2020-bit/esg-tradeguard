@@ -154,7 +154,7 @@ export default function Step1Intake({ skipLoading = false }: { skipLoading?: boo
                 onDragLeave={() => setDragTarget(null)}
                 onDrop={handleBulkDrop}
                 className={`border-2 border-dashed rounded-card p-6 text-center transition-all mb-5 ${
-                  dragTarget === 'bulk' ? 'border-emerald-400 bg-emerald-50 scale-[1.01]' : 'border-border bg-surface'
+                  dragTarget === 'bulk' ? 'border-ink bg-surface' : 'border-border bg-surface'
                 }`}
               >
                 <Upload size={28} className="mx-auto text-muted3 mb-2" />
