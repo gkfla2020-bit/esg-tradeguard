@@ -103,7 +103,7 @@ export default function App() {
             <button
               onClick={() => setStarted(true)}
               style={{ backgroundColor: '#0A0A0A', color: '#fff' }}
-              className="px-8 py-3.5 rounded-lg text-[15px] font-semibold transition-all active:scale-[0.98] hover:opacity-90"
+              className="px-7 py-3 rounded-lg text-[14px] font-semibold transition-all active:scale-[0.98] hover:opacity-90"
             >
               시작하기
             </button>

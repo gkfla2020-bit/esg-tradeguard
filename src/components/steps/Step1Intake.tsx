@@ -153,13 +153,13 @@ export default function Step1Intake({ skipLoading = false }: { skipLoading?: boo
                 onDragOver={e => { e.preventDefault(); setDragTarget('bulk') }}
                 onDragLeave={() => setDragTarget(null)}
                 onDrop={handleBulkDrop}
-                className={`border-2 border-dashed rounded-card p-6 text-center transition-all mb-5 ${
-                  dragTarget === 'bulk' ? 'border-ink bg-surface' : 'border-border bg-surface'
+                className={`border rounded-card p-5 text-center transition-all mb-4 ${
+                  dragTarget === 'bulk' ? 'border-ink bg-surface2' : 'border-border bg-surface'
                 }`}
               >
-                <Upload size={28} className="mx-auto text-muted3 mb-2" />
-                <p className="text-[13px] font-medium text-ink">여러 파일을 한번에 드래그하여 일괄 업로드</p>
-                <p className="text-[11px] text-muted3 mt-1">PDF, PNG, JPG, GeoJSON · 파일당 최대 50MB</p>
+                <Upload size={20} className="mx-auto text-muted3 mb-1.5" />
+                <p className="text-[12px] font-medium text-ink">파일을 드래그하여 업로드</p>
+                <p className="text-[10px] text-muted3 mt-0.5">PDF, PNG, JPG, GeoJSON · 50MB</p>
               </div>
 
               {/* Per-slot upload */}
