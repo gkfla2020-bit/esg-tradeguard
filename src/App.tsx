@@ -78,10 +78,10 @@ export default function App() {
             className="max-w-[700px] w-full"
           >
             {/* Headline */}
-            <h1 className="font-heading text-[36px] font-bold text-ink tracking-tight leading-[1.15] mb-4">
+            <h1 className="font-heading text-[36px] font-bold text-ink tracking-[-0.03em] leading-[1.1] mb-4">
               EU 환경 규제 대응을 위한<br />통합 컴플라이언스 플랫폼
             </h1>
-            <p className="text-[15px] text-muted2 leading-relaxed mb-8 max-w-[540px]">
+            <p className="text-[14px] text-muted2 leading-[1.6] mb-8 max-w-[500px]">
               수입 서류 제출부터 위성 기반 산림전용 검증까지, 5단계 자동화 파이프라인으로
               EUDR·CBAM·CSDDD 규제를 한번에 대응합니다.
             </p>
