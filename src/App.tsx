@@ -236,7 +236,7 @@ export default function App() {
       <main className="flex-1 flex flex-col overflow-hidden">
         {/* Top header */}
         <header className="border-b border-border bg-white shrink-0">
-          <div className="h-[2px] bg-surface2">
+          <div className="h-[1.5px] bg-border/30">
             <motion.div className="h-full bg-ink" animate={{ width: `${(step / STEPS.length) * 100}%` }} transition={{ duration: 0.4, ease: 'easeOut' }} />
           </div>
           <div className="h-12 flex items-center px-8 justify-between">
